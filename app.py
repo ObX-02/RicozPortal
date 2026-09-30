@@ -7,7 +7,14 @@ app = Flask(__name__)
 
 app.secret_key = "ricozportal-development-secret"
 
-DATABASE = "ricozportal.db"
+
+# ==========================================
+# DATABASE
+# ==========================================
+
+# Vercel uses a read-only application filesystem.
+# /tmp is writable during the serverless runtime.
+DATABASE = "/tmp/ricozportal.db"
 
 
 # ==========================================
@@ -43,6 +50,7 @@ def initialize_database():
     """)
 
     # Create demo account if it does not exist
+
     existing_user = connection.execute(
         "SELECT id FROM users WHERE email = ?",
         ("demo@ricozportal.com",)
@@ -50,7 +58,9 @@ def initialize_database():
 
     if existing_user is None:
 
-        password_hash = generate_password_hash("Demo@123")
+        password_hash = generate_password_hash(
+            "Demo@123"
+        )
 
         connection.execute("""
             INSERT INTO users
@@ -461,11 +471,19 @@ def logout():
 
 
 # ==========================================
-# RUN APPLICATION
+# INITIALIZE DATABASE
+# ==========================================
+
+# This runs when Vercel imports the Flask application.
+# It creates the database and demo account in /tmp.
+
+initialize_database()
+
+
+# ==========================================
+# RUN APPLICATION LOCALLY
 # ==========================================
 
 if __name__ == "__main__":
-
-    initialize_database()
 
     app.run(debug=True)
