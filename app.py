@@ -12,27 +12,15 @@ app.secret_key = "ricozportal-development-secret"
 # DATABASE
 # ==========================================
 
-# Vercel uses a read-only application filesystem.
-# /tmp is writable during the serverless runtime.
+# /tmp is writable on Vercel serverless runtime.
 DATABASE = "/tmp/ricozportal.db"
 
 
-# ==========================================
-# DATABASE CONNECTION
-# ==========================================
-
 def get_db():
-
     connection = sqlite3.connect(DATABASE)
-
     connection.row_factory = sqlite3.Row
-
     return connection
 
-
-# ==========================================
-# INITIALIZE DATABASE
-# ==========================================
 
 def initialize_database():
 
@@ -49,8 +37,6 @@ def initialize_database():
         )
     """)
 
-    # Create demo account if it does not exist
-
     existing_user = connection.execute(
         "SELECT id FROM users WHERE email = ?",
         ("demo@ricozportal.com",)
@@ -58,9 +44,7 @@ def initialize_database():
 
     if existing_user is None:
 
-        password_hash = generate_password_hash(
-            "Demo@123"
-        )
+        password_hash = generate_password_hash("Demo@123")
 
         connection.execute("""
             INSERT INTO users
@@ -75,15 +59,24 @@ def initialize_database():
         ))
 
     connection.commit()
-
     connection.close()
+
+
+# ==========================================
+# LANDING PAGE
+# ==========================================
+
+@app.route("/")
+def landing():
+
+    return render_template("landing.html")
 
 
 # ==========================================
 # LOGIN
 # ==========================================
 
-@app.route("/", methods=["GET", "POST"])
+@app.route("/login", methods=["GET", "POST"])
 def login():
 
     if request.method == "POST":
@@ -122,7 +115,6 @@ def login():
             "index.html",
             error="Invalid email or password."
         )
-
 
     success = session.pop(
         "success",
@@ -169,9 +161,6 @@ def register():
             ""
         )
 
-
-        # Validate required fields
-
         if not name or not email or not password:
 
             return render_template(
@@ -181,9 +170,6 @@ def register():
                 email=email,
                 company=company
             )
-
-
-        # Check password confirmation
 
         if password != confirm_password:
 
@@ -195,9 +181,6 @@ def register():
                 company=company
             )
 
-
-        # Password length
-
         if len(password) < 8:
 
             return render_template(
@@ -208,17 +191,12 @@ def register():
                 company=company
             )
 
-
         connection = get_db()
-
-
-        # Check existing email
 
         existing_user = connection.execute(
             "SELECT id FROM users WHERE email = ?",
             (email,)
         ).fetchone()
-
 
         if existing_user:
 
@@ -232,15 +210,9 @@ def register():
                 company=company
             )
 
-
-        # Hash password
-
         password_hash = generate_password_hash(
             password
         )
-
-
-        # Create user
 
         connection.execute("""
             INSERT INTO users
@@ -254,24 +226,17 @@ def register():
             "Free"
         ))
 
-
         connection.commit()
-
         connection.close()
-
-
-        # Registration success
 
         session["success"] = (
             "Account created successfully. "
             "You can now sign in."
         )
 
-
         return redirect(
             url_for("login")
         )
-
 
     return render_template(
         "register.html"
@@ -292,7 +257,6 @@ def forgot_password():
             ""
         ).strip().lower()
 
-
         connection = get_db()
 
         user = connection.execute(
@@ -302,7 +266,6 @@ def forgot_password():
 
         connection.close()
 
-
         if user is None:
 
             return render_template(
@@ -310,15 +273,11 @@ def forgot_password():
                 error="No account was found with this email."
             )
 
-
-        # Save user ID temporarily for password reset
-
         session["reset_user_id"] = user["id"]
 
         return redirect(
             url_for("reset_password")
         )
-
 
     return render_template(
         "forgot_password.html"
@@ -332,14 +291,11 @@ def forgot_password():
 @app.route("/reset-password", methods=["GET", "POST"])
 def reset_password():
 
-    # Make sure user started the reset process
-
     if "reset_user_id" not in session:
 
         return redirect(
             url_for("forgot_password")
         )
-
 
     if request.method == "POST":
 
@@ -353,18 +309,12 @@ def reset_password():
             ""
         )
 
-
-        # Password length
-
         if len(password) < 8:
 
             return render_template(
                 "reset_password.html",
                 error="Password must be at least 8 characters long."
             )
-
-
-        # Password confirmation
 
         if password != confirm_password:
 
@@ -373,13 +323,9 @@ def reset_password():
                 error="Passwords do not match."
             )
 
-
-        # Hash new password
-
         password_hash = generate_password_hash(
             password
         )
-
 
         connection = get_db()
 
@@ -396,30 +342,21 @@ def reset_password():
         )
 
         connection.commit()
-
         connection.close()
-
-
-        # Remove reset session
 
         session.pop(
             "reset_user_id",
             None
         )
 
-
-        # Success message
-
         session["success"] = (
             "Password reset successfully. "
             "You can now sign in."
         )
 
-
         return redirect(
             url_for("login")
         )
-
 
     return render_template(
         "reset_password.html"
@@ -439,7 +376,6 @@ def dashboard():
             url_for("login")
         )
 
-
     connection = get_db()
 
     user = connection.execute(
@@ -448,7 +384,6 @@ def dashboard():
     ).fetchone()
 
     connection.close()
-
 
     return render_template(
         "dashboard.html",
@@ -474,14 +409,11 @@ def logout():
 # INITIALIZE DATABASE
 # ==========================================
 
-# This runs when Vercel imports the Flask application.
-# It creates the database and demo account in /tmp.
-
 initialize_database()
 
 
 # ==========================================
-# RUN APPLICATION LOCALLY
+# LOCAL DEVELOPMENT
 # ==========================================
 
 if __name__ == "__main__":

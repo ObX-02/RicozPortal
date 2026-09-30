@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>RicozPortal | Customer Portal</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/landing.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- ==========================================
+     NAVIGATION
+========================================== -->
+
+<header class="navbar">
+
+    <div class="container nav-inner">
+
+        <a
+            href="{{ url_for('landing') }}"
+            class="brand"
+        >
+
+            <div class="brand-mark">
+
+                <span class="brand-line line-one"></span>
+                <span class="brand-line line-two"></span>
+                <span class="brand-line line-three"></span>
+
+            </div>
+
+            <div class="brand-text">
+
+                <strong>Ricoz</strong>
+                <span>Portal</span>
+
+            </div>
+
+        </a>
+
+
+        <nav class="nav-links">
+
+            <a href="#features">
+                Features
+            </a>
+
+            <a href="#how-it-works">
+                How It Works
+            </a>
+
+            <a href="#benefits">
+                Benefits
+            </a>
+
+        </nav>
+
+
+        <div class="nav-actions">
+
+            <a
+                href="{{ url_for('login') }}"
+                class="login-link"
+            >
+                Sign In
+            </a>
+
+            <a
+                href="{{ url_for('register') }}"
+                class="nav-button"
+            >
+                Get Started
+            </a>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<!-- ==========================================
+     HERO
+========================================== -->
+
+<main>
+
+<section class="hero">
+
+    <div class="container hero-grid">
+
+
+        <div class="hero-content">
+
+            <div class="eyebrow">
+
+                <span class="status-dot"></span>
+
+                CUSTOMER PORTAL
+
+            </div>
+
+
+            <h1>
+
+                Your Ricoz experience,
+                <span>all in one place.</span>
+
+            </h1>
+
+
+            <p class="hero-description">
+
+                RicozPortal gives customers a simple and secure
+                way to manage their account, view subscription
+                information, access support, and stay connected
+                with Ricoz.
+
+            </p>
+
+
+            <div class="hero-actions">
+
+                <a
+                    href="{{ url_for('register') }}"
+                    class="primary-button"
+                >
+
+                    Create Your Account
+
+                    <span>→</span>
+
+                </a>
+
+
+                <a
+                    href="{{ url_for('login') }}"
+                    class="secondary-button"
+                >
+
+                    Sign In
+
+                </a>
+
+            </div>
+
+
+            <div class="hero-note">
+
+                <span>✓</span>
+
+                Simple onboarding
+
+                <span>✓</span>
+
+                Secure access
+
+                <span>✓</span>
+
+                Customer-focused
+
+            </div>
+
+        </div>
+
+
+
+        <!-- HERO PORTAL PREVIEW -->
+
+        <div class="hero-visual">
+
+            <div class="visual-glow"></div>
+
+
+            <div class="portal-window">
+
+                <div class="window-top">
+
+                    <div class="window-brand">
+
+                        <div class="mini-brand-mark">
+
+                            <span></span>
+                            <span></span>
+                            <span></span>
+
+                        </div>
+
+                        <strong>RicozPortal</strong>
+
+                    </div>
+
+
+                    <div class="window-user">
+
+                        <span class="user-dot"></span>
+
+                        Customer
+
+                    </div>
+
+                </div>
+
+
+                <div class="window-body">
+
+                    <div class="preview-heading">
+
+                        <div>
+
+                            <small>
+                                CUSTOMER DASHBOARD
+                            </small>
+
+                            <h3>
+                                Welcome back
+                            </h3>
+
+                        </div>
+
+                        <div class="preview-avatar">
+                            C
+                        </div>
+
+                    </div>
+
+
+                    <div class="preview-cards">
+
+                        <div class="preview-card">
+
+                            <span class="preview-icon">
+                                ✓
+                            </span>
+
+                            <div>
+
+                                <small>
+                                    SUBSCRIPTION
+                                </small>
+
+                                <strong>
+                                    Professional
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="preview-card">
+
+                            <span class="preview-icon">
+                                $
+                            </span>
+
+                            <div>
+
+                                <small>
+                                    NEXT BILLING
+                                </small>
+
+                                <strong>
+                                    $49 / month
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="preview-panel">
+
+                        <div class="panel-title">
+
+                            <strong>
+                                Account Overview
+                            </strong>
+
+                            <span>
+                                Active
+                            </span>
+
+                        </div>
+
+
+                        <div class="progress-row">
+
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+
+                        </div>
+
+
+                        <div class="preview-lines">
+
+                            <div></div>
+                            <div></div>
+                            <div class="short"></div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="floating-card floating-card-one">
+
+                <span class="floating-check">
+                    ✓
+                </span>
+
+                <div>
+
+                    <strong>
+                        Account Ready
+                    </strong>
+
+                    <small>
+                        Everything is organized
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="floating-card floating-card-two">
+
+                <span class="support-symbol">
+                    ?
+                </span>
+
+                <div>
+
+                    <strong>
+                        Support
+                    </strong>
+
+                    <small>
+                        We're here to help
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==========================================
+     TRUST STRIP
+========================================== -->
+
+<section class="trust-strip">
+
+    <div class="container trust-inner">
+
+        <div>
+            <strong>Simple.</strong>
+            <span>Easy to understand.</span>
+        </div>
+
+        <div>
+            <strong>Secure.</strong>
+            <span>Designed for protected access.</span>
+        </div>
+
+        <div>
+            <strong>Connected.</strong>
+            <span>Everything in one portal.</span>
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==========================================
+     FEATURES
+========================================== -->
+
+<section
+    class="section"
+    id="features"
+>
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <span class="section-label">
+                PORTAL FEATURES
+            </span>
+
+            <h2>
+                Everything customers need,
+                <span>in one place.</span>
+            </h2>
+
+            <p>
+                RicozPortal is designed to make everyday
+                customer interactions easier, clearer,
+                and more organized.
+            </p>
+
+        </div>
+
+
+        <div class="feature-grid">
+
+
+            <article class="feature-card">
+
+                <div class="feature-icon">
+                    <span>01</span>
+                </div>
+
+                <h3>
+                    Account Management
+                </h3>
+
+                <p>
+                    Keep customer account information
+                    organized and accessible from one
+                    convenient dashboard.
+                </p>
+
+                <a href="{{ url_for('register') }}">
+                    Get started →
+                </a>
+
+            </article>
+
+
+            <article class="feature-card featured">
+
+                <div class="feature-icon">
+                    <span>02</span>
+                </div>
+
+                <h3>
+                    Subscription Overview
+                </h3>
+
+                <p>
+                    View your current plan, billing details,
+                    account status, and subscription information
+                    through a clear interface.
+                </p>
+
+                <a href="{{ url_for('register') }}">
+                    Explore portal →
+                </a>
+
+            </article>
+
+
+            <article class="feature-card">
+
+                <div class="feature-icon">
+                    <span>03</span>
+                </div>
+
+                <h3>
+                    Customer Support
+                </h3>
+
+                <p>
+                    Access support resources and quickly
+                    find the information you need whenever
+                    assistance is required.
+                </p>
+
+                <a href="{{ url_for('register') }}">
+                    Join now →
+                </a>
+
+            </article>
+
+
+            <article class="feature-card">
+
+                <div class="feature-icon">
+                    <span>04</span>
+                </div>
+
+                <h3>
+                    Secure Access
+                </h3>
+
+                <p>
+                    Customer authentication and password
+                    protection help keep account access
+                    secure.
+                </p>
+
+                <a href="{{ url_for('login') }}">
+                    Sign in →
+                </a>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==========================================
+     HOW IT WORKS
+========================================== -->
+
+<section
+    class="section process-section"
+    id="how-it-works"
+>
+
+    <div class="container">
+
+        <div class="section-heading centered">
+
+            <span class="section-label">
+                GET STARTED
+            </span>
+
+            <h2>
+                Getting started is
+                <span>simple.</span>
+            </h2>
+
+            <p>
+                Create your account and access your
+                customer portal in just a few steps.
+            </p>
+
+        </div>
+
+
+        <div class="steps">
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    01
+                </div>
+
+                <div class="step-content">
+
+                    <h3>
+                        Create your account
+                    </h3>
+
+                    <p>
+                        Enter your basic information and
+                        create your secure customer account.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="step-line"></div>
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    02
+                </div>
+
+                <div class="step-content">
+
+                    <h3>
+                        Sign in securely
+                    </h3>
+
+                    <p>
+                        Use your account credentials to
+                        securely access your portal.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="step-line"></div>
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    03
+                </div>
+
+                <div class="step-content">
+
+                    <h3>
+                        Manage your portal
+                    </h3>
+
+                    <p>
+                        View your account, subscription,
+                        support information, and more.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="process-action">
+
+            <a
+                href="{{ url_for('register') }}"
+                class="primary-button"
+            >
+
+                Create Your Account
+
+                <span>→</span>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==========================================
+     BENEFITS
+========================================== -->
+
+<section
+    class="benefits-section"
+    id="benefits"
+>
+
+    <div class="container benefits-grid">
+
+
+        <div class="benefits-content">
+
+            <span class="section-label">
+                BUILT FOR CUSTOMERS
+            </span>
+
+            <h2>
+                A smoother way to
+                <span>stay connected.</span>
+            </h2>
+
+            <p>
+                RicozPortal brings important customer
+                information together into one organized
+                experience, reducing unnecessary steps
+                and making the portal easier to use.
+            </p>
+
+
+            <div class="benefit-list">
+
+                <div class="benefit-item">
+
+                    <div class="benefit-check">
+                        ✓
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Easy onboarding
+                        </strong>
+
+                        <span>
+                            A clear path from account creation
+                            to dashboard access.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="benefit-item">
+
+                    <div class="benefit-check">
+                        ✓
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Organized information
+                        </strong>
+
+                        <span>
+                            Important account details are
+                            presented in a simple interface.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="benefit-item">
+
+                    <div class="benefit-check">
+                        ✓
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Customer-first experience
+                        </strong>
+
+                        <span>
+                            Designed to help customers find
+                            what they need quickly.
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="benefit-visual">
+
+            <div class="benefit-card">
+
+                <div class="benefit-card-top">
+
+                    <div class="circle-logo">
+
+                        <span></span>
+                        <span></span>
+                        <span></span>
+
+                    </div>
+
+                    <div>
+
+                        <small>
+                            RICOZPORTAL
+                        </small>
+
+                        <strong>
+                            Customer Center
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="benefit-status">
+
+                    <span class="status-check">
+                        ✓
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Your account is ready
+                        </strong>
+
+                        <small>
+                            Welcome to your customer portal
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div class="benefit-mini-grid">
+
+                    <div>
+                        <small>ACCOUNT</small>
+                        <strong>Active</strong>
+                    </div>
+
+                    <div>
+                        <small>PLAN</small>
+                        <strong>Professional</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==========================================
+     FINAL CTA
+========================================== -->
+
+<section class="cta-section">
+
+    <div class="container">
+
+        <div class="cta-card">
+
+            <div>
+
+                <span class="section-label">
+                    READY TO BEGIN?
+                </span>
+
+                <h2>
+                    Your customer portal
+                    starts here.
+                </h2>
+
+                <p>
+                    Create your account and get started
+                    with a simpler customer experience.
+                </p>
+
+            </div>
+
+
+            <div class="cta-actions">
+
+                <a
+                    href="{{ url_for('register') }}"
+                    class="cta-primary"
+                >
+                    Create Account
+                    <span>→</span>
+                </a>
+
+                <a
+                    href="{{ url_for('login') }}"
+                    class="cta-secondary"
+                >
+                    Already have an account?
+                    Sign In
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+
+<!-- ==========================================
+     FOOTER
+========================================== -->
+
+<footer class="footer">
+
+    <div class="container footer-inner">
+
+
+        <div class="footer-brand">
+
+            <a
+                href="{{ url_for('landing') }}"
+                class="brand"
+            >
+
+                <div class="brand-mark">
+
+                    <span class="brand-line line-one"></span>
+                    <span class="brand-line line-two"></span>
+                    <span class="brand-line line-three"></span>
+
+                </div>
+
+                <div class="brand-text">
+
+                    <strong>Ricoz</strong>
+                    <span>Portal</span>
+
+                </div>
+
+            </a>
+
+
+            <p>
+                A simple and secure customer portal
+                experience by Ricoz.
+            </p>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <a href="#features">
+                Features
+            </a>
+
+            <a href="#how-it-works">
+                How It Works
+            </a>
+
+            <a href="{{ url_for('login') }}">
+                Sign In
+            </a>
+
+            <a href="{{ url_for('register') }}">
+                Create Account
+            </a>
+
+        </div>
+
+
+        <div class="footer-copy">
+
+            © 2026 RicozPortal. All rights reserved.
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+</body>
+
+</html>
