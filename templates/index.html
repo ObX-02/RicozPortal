@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Sign In | RicozPortal</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+<body>
+
+    <main class="login-page">
+
+        <!-- Left Branding Panel -->
+        <section class="brand-panel">
+
+            <div class="brand-background-circle circle-one"></div>
+            <div class="brand-background-circle circle-two"></div>
+
+            <div class="brand-content">
+
+                <div class="brand-top">
+
+                    <div class="brand-logo">
+                        R
+                    </div>
+
+                    <span class="brand-name">
+                        RicozPortal
+                    </span>
+
+                </div>
+
+
+                <div class="brand-main">
+
+                    <p class="brand-eyebrow">
+                        SECURE CUSTOMER PORTAL
+                    </p>
+
+                    <h1>
+                        Everything you need,
+                        <span>in one place.</span>
+                    </h1>
+
+                    <p class="brand-description">
+                        Manage your account, subscriptions, support,
+                        billing, and important documents through your
+                        secure RicozPortal dashboard.
+                    </p>
+
+
+                    <div class="brand-features">
+
+                        <div class="feature-item">
+
+                            <div class="feature-icon">
+                                ✓
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Account Management
+                                </strong>
+
+                                <p>
+                                    Manage your customer information
+                                    and subscription details.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="feature-item">
+
+                            <div class="feature-icon">
+                                ✓
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Support &amp; Tickets
+                                </strong>
+
+                                <p>
+                                    Create and track support requests
+                                    from your portal.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="feature-item">
+
+                            <div class="feature-icon">
+                                ✓
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Billing &amp; Documents
+                                </strong>
+
+                                <p>
+                                    Access invoices, billing information,
+                                    and important documents.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="brand-footer">
+
+                <span>
+                    © 2026 RicozPortal
+                </span>
+
+                <span class="secure-badge">
+                    🔒 Secure Portal
+                </span>
+
+            </div>
+
+        </section>
+
+
+        <!-- Login Section -->
+        <section class="login-panel">
+
+            <div class="login-container">
+
+                <!-- Mobile Brand -->
+                <div class="mobile-brand">
+
+                    <div class="brand-logo">
+                        R
+                    </div>
+
+                    <span>
+                        RicozPortal
+                    </span>
+
+                </div>
+
+
+                <!-- Login Header -->
+                <div class="login-header">
+
+                    <p class="login-eyebrow">
+                        CUSTOMER PORTAL
+                    </p>
+
+                    <h2>
+                        Welcome back
+                    </h2>
+
+                    <p>
+                        Sign in to access your RicozPortal account.
+                    </p>
+
+                </div>
+
+
+                <!-- Registration Success Message -->
+                {% if success %}
+
+                    <div class="login-success">
+
+                        <span class="success-icon">
+                            ✓
+                        </span>
+
+                        <span>
+                            {{ success }}
+                        </span>
+
+                    </div>
+
+                {% endif %}
+
+
+                <!-- Login Error -->
+                {% if error %}
+
+                    <div class="login-error">
+
+                        <span class="error-icon">
+                            !
+                        </span>
+
+                        <span>
+                            {{ error }}
+                        </span>
+
+                    </div>
+
+                {% endif %}
+
+
+                <!-- Login Form -->
+                <form
+                    method="POST"
+                    action="{{ url_for('login') }}"
+                >
+
+                    <!-- Email -->
+                    <div class="form-group">
+
+                        <label for="email">
+                            Email address
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">
+                                ✉
+                            </span>
+
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="you@example.com"
+                                autocomplete="email"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Password -->
+                    <div class="form-group">
+
+                        <div class="password-label-row">
+
+                            <label for="password">
+                                Password
+                            </label>
+
+                            <!-- FIXED FORGOT PASSWORD LINK -->
+                            <a href="{{ url_for('forgot_password') }}">
+                                Forgot password?
+                            </a>
+
+                        </div>
+
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">
+                                🔒
+                            </span>
+
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="Enter your password"
+                                autocomplete="current-password"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Remember Me -->
+                    <div class="login-options">
+
+                        <label class="remember-me">
+
+                            <input
+                                type="checkbox"
+                                name="remember"
+                            >
+
+                            <span class="custom-checkbox"></span>
+
+                            <span>
+                                Remember me
+                            </span>
+
+                        </label>
+
+                    </div>
+
+
+                    <!-- Sign In Button -->
+                    <button
+                        type="submit"
+                        class="login-button"
+                    >
+
+                        <span>
+                            Sign in to your account
+                        </span>
+
+                        <span class="button-arrow">
+                            →
+                        </span>
+
+                    </button>
+
+                </form>
+
+
+                <!-- Support -->
+                <div class="login-support">
+
+                    <p>
+
+                        Need help?
+
+                        <a href="#">
+                            Contact support
+                        </a>
+
+                    </p>
+
+                </div>
+
+
+                <!-- Create Account -->
+                <div class="create-account">
+
+                    <p>
+
+                        Don't have an account?
+
+                        <a href="{{ url_for('register') }}">
+                            Create account
+                        </a>
+
+                    </p>
+
+                </div>
+
+
+                <!-- Demo Account Information -->
+                <div class="demo-account">
+
+                    <div class="demo-header">
+
+                        <div class="demo-icon">
+                            ◉
+                        </div>
+
+                        <div>
+
+                            <div class="demo-title">
+                                Demo account
+                            </div>
+
+                            <p>
+                                Use these credentials to test the portal.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="demo-credentials">
+
+                        <div class="credential">
+
+                            <span>
+                                Email
+                            </span>
+
+                            <strong>
+                                demo@ricozportal.com
+                            </strong>
+
+                        </div>
+
+
+                        <div class="credential">
+
+                            <span>
+                                Password
+                            </span>
+
+                            <strong>
+                                Demo@123
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Footer -->
+                <div class="login-footer">
+
+                    <span>
+                        © 2026 RicozPortal
+                    </span>
+
+                    <span>
+                        Secure customer access
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>

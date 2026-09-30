@@ -1,0 +1,828 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Dashboard | RicozPortal</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/dashboard.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+    <div class="dashboard-layout">
+
+
+        <!-- =========================
+             SIDEBAR
+        ========================== -->
+
+        <aside class="sidebar">
+
+            <div class="sidebar-top">
+
+                <div class="brand">
+
+                    <div class="brand-logo">
+                        R
+                    </div>
+
+                    <span>
+                        RicozPortal
+                    </span>
+
+                </div>
+
+
+                <nav class="navigation">
+
+                    <p class="nav-title">
+                        MAIN MENU
+                    </p>
+
+
+                    <a href="#" class="nav-item active">
+
+                        <span class="nav-icon">
+                            ▦
+                        </span>
+
+                        <span>
+                            Dashboard
+                        </span>
+
+                    </a>
+
+
+                    <a href="#" class="nav-item">
+
+                        <span class="nav-icon">
+                            ◉
+                        </span>
+
+                        <span>
+                            My Account
+                        </span>
+
+                    </a>
+
+
+                    <a href="#" class="nav-item">
+
+                        <span class="nav-icon">
+                            ▤
+                        </span>
+
+                        <span>
+                            Subscription
+                        </span>
+
+                    </a>
+
+
+                    <a href="#" class="nav-item">
+
+                        <span class="nav-icon">
+                            ◫
+                        </span>
+
+                        <span>
+                            Billing
+                        </span>
+
+                    </a>
+
+
+                    <a href="#" class="nav-item">
+
+                        <span class="nav-icon">
+                            ◌
+                        </span>
+
+                        <span>
+                            Support
+                        </span>
+
+                    </a>
+
+
+                    <p class="nav-title second-title">
+                        ACCOUNT
+                    </p>
+
+
+                    <a href="#" class="nav-item">
+
+                        <span class="nav-icon">
+                            ⚙
+                        </span>
+
+                        <span>
+                            Settings
+                        </span>
+
+                    </a>
+
+                </nav>
+
+            </div>
+
+
+            <!-- Sidebar Bottom -->
+
+            <div class="sidebar-bottom">
+
+                <div class="help-box">
+
+                    <div class="help-icon">
+                        ?
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Need help?
+                        </strong>
+
+                        <p>
+                            Our support team is here.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <a
+                    href="{{ url_for('logout') }}"
+                    class="logout-button"
+                >
+
+                    <span>
+                        ↪
+                    </span>
+
+                    Logout
+
+                </a>
+
+            </div>
+
+        </aside>
+
+
+
+        <!-- =========================
+             MAIN CONTENT
+        ========================== -->
+
+        <main class="main-content">
+
+
+            <!-- TOP BAR -->
+
+            <header class="topbar">
+
+                <div class="mobile-brand">
+
+                    <div class="brand-logo">
+                        R
+                    </div>
+
+                    <span>
+                        RicozPortal
+                    </span>
+
+                </div>
+
+
+                <div class="topbar-right">
+
+                    <button
+                        class="notification-button"
+                        type="button"
+                    >
+                        ♢
+
+                        <span class="notification-dot">
+                        </span>
+
+                    </button>
+
+
+                    <div class="user-profile">
+
+                        <div class="avatar">
+
+                            {{ user["name"][0]|upper }}
+
+                        </div>
+
+
+                        <div class="user-info">
+
+                            <strong>
+                                {{ user["name"] }}
+                            </strong>
+
+                            <span>
+                                Customer
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </header>
+
+
+
+            <!-- PAGE CONTENT -->
+
+            <div class="page-content">
+
+
+                <!-- WELCOME -->
+
+                <section class="welcome-section">
+
+                    <div>
+
+                        <p class="welcome-label">
+                            CUSTOMER DASHBOARD
+                        </p>
+
+                        <h1>
+                            Welcome back, {{ user["name"] }}
+                        </h1>
+
+                        <p class="welcome-text">
+                            Here's an overview of your account,
+                            subscription, and recent activity.
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        class="primary-button"
+                        type="button"
+                    >
+                        + New Support Ticket
+                    </button>
+
+                </section>
+
+
+
+                <!-- STATISTICS -->
+
+                <section class="stats-grid">
+
+
+                    <!-- Subscription -->
+
+                    <div class="stat-card">
+
+                        <div class="stat-top">
+
+                            <div class="stat-icon blue">
+                                ◈
+                            </div>
+
+                            <span class="stat-status positive">
+                                Active
+                            </span>
+
+                        </div>
+
+                        <p class="stat-label">
+                            Subscription
+                        </p>
+
+                        <h2>
+                            {{ user["plan"] }}
+                        </h2>
+
+                        <p class="stat-description">
+                            Your current plan
+                        </p>
+
+                    </div>
+
+
+
+                    <!-- Billing -->
+
+                    <div class="stat-card">
+
+                        <div class="stat-top">
+
+                            <div class="stat-icon green">
+                                $
+                            </div>
+
+                            <span class="stat-status positive">
+                                Current
+                            </span>
+
+                        </div>
+
+                        <p class="stat-label">
+                            Next Billing
+                        </p>
+
+                        <h2>
+                            $49.00
+                        </h2>
+
+                        <p class="stat-description">
+                            Due October 15, 2026
+                        </p>
+
+                    </div>
+
+
+
+                    <!-- Tickets -->
+
+                    <div class="stat-card">
+
+                        <div class="stat-top">
+
+                            <div class="stat-icon purple">
+                                #
+                            </div>
+
+                            <span class="stat-status">
+                                This month
+                            </span>
+
+                        </div>
+
+                        <p class="stat-label">
+                            Support Tickets
+                        </p>
+
+                        <h2>
+                            3
+                        </h2>
+
+                        <p class="stat-description">
+                            1 ticket awaiting response
+                        </p>
+
+                    </div>
+
+
+
+                    <!-- Account -->
+
+                    <div class="stat-card">
+
+                        <div class="stat-top">
+
+                            <div class="stat-icon orange">
+                                ✓
+                            </div>
+
+                            <span class="stat-status positive">
+                                Verified
+                            </span>
+
+                        </div>
+
+                        <p class="stat-label">
+                            Account Status
+                        </p>
+
+                        <h2>
+                            Secure
+                        </h2>
+
+                        <p class="stat-description">
+                            Account successfully verified
+                        </p>
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- TWO COLUMN AREA -->
+
+                <section class="dashboard-grid">
+
+
+                    <!-- SUBSCRIPTION -->
+
+                    <div class="dashboard-card">
+
+                        <div class="card-header">
+
+                            <div>
+
+                                <p class="card-eyebrow">
+                                    YOUR PLAN
+                                </p>
+
+                                <h3>
+                                    {{ user["plan"] }}
+                                </h3>
+
+                            </div>
+
+                            <span class="plan-badge">
+                                ACTIVE
+                            </span>
+
+                        </div>
+
+
+                        <div class="subscription-price">
+
+                            <strong>
+                                $49
+                            </strong>
+
+                            <span>
+                                / month
+                            </span>
+
+                        </div>
+
+
+                        <div class="progress-section">
+
+                            <div class="progress-header">
+
+                                <span>
+                                    Billing cycle
+                                </span>
+
+                                <span>
+                                    22 days left
+                                </span>
+
+                            </div>
+
+                            <div class="progress-bar">
+
+                                <div
+                                    class="progress-fill"
+                                    style="width: 72%;"
+                                >
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="plan-details">
+
+                            <div>
+
+                                <span>
+                                    Account
+                                </span>
+
+                                <strong>
+                                    {{ user["company"] }}
+                                </strong>
+
+                            </div>
+
+
+                            <div>
+
+                                <span>
+                                    Email
+                                </span>
+
+                                <strong>
+                                    {{ user["email"] }}
+                                </strong>
+
+                            </div>
+
+
+                            <div>
+
+                                <span>
+                                    Next billing
+                                </span>
+
+                                <strong>
+                                    October 15, 2026
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <button
+                            class="secondary-button"
+                            type="button"
+                        >
+                            Manage Subscription
+                        </button>
+
+                    </div>
+
+
+
+                    <!-- RECENT ACTIVITY -->
+
+                    <div class="dashboard-card">
+
+                        <div class="card-header">
+
+                            <div>
+
+                                <p class="card-eyebrow">
+                                    ACTIVITY
+                                </p>
+
+                                <h3>
+                                    Recent Activity
+                                </h3>
+
+                            </div>
+
+                            <a
+                                href="#"
+                                class="view-link"
+                            >
+                                View all
+                            </a>
+
+                        </div>
+
+
+                        <div class="activity-list">
+
+
+                            <div class="activity-item">
+
+                                <div class="activity-icon success">
+                                    ✓
+                                </div>
+
+                                <div class="activity-content">
+
+                                    <strong>
+                                        Payment received
+                                    </strong>
+
+                                    <p>
+                                        Your September payment
+                                        was processed successfully.
+                                    </p>
+
+                                    <span>
+                                        Today, 10:32 AM
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="activity-item">
+
+                                <div class="activity-icon info">
+                                    i
+                                </div>
+
+                                <div class="activity-content">
+
+                                    <strong>
+                                        Profile updated
+                                    </strong>
+
+                                    <p>
+                                        Your account information
+                                        was successfully updated.
+                                    </p>
+
+                                    <span>
+                                        Yesterday, 4:18 PM
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="activity-item">
+
+                                <div class="activity-icon warning">
+                                    !
+                                </div>
+
+                                <div class="activity-content">
+
+                                    <strong>
+                                        Support ticket opened
+                                    </strong>
+
+                                    <p>
+                                        Ticket #1042 is waiting
+                                        for a support response.
+                                    </p>
+
+                                    <span>
+                                        September 27, 2026
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- QUICK ACTIONS -->
+
+                <section class="quick-section">
+
+                    <div class="section-heading">
+
+                        <div>
+
+                            <p class="card-eyebrow">
+                                QUICK ACCESS
+                            </p>
+
+                            <h3>
+                                What would you like to do?
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="quick-grid">
+
+
+                        <a
+                            href="#"
+                            class="quick-card"
+                        >
+
+                            <div class="quick-icon">
+                                ◉
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Account Settings
+                                </strong>
+
+                                <p>
+                                    Update your personal
+                                    information.
+                                </p>
+
+                            </div>
+
+                            <span>
+                                →
+                            </span>
+
+                        </a>
+
+
+
+                        <a
+                            href="#"
+                            class="quick-card"
+                        >
+
+                            <div class="quick-icon">
+                                $
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    View Invoices
+                                </strong>
+
+                                <p>
+                                    Access your billing
+                                    documents.
+                                </p>
+
+                            </div>
+
+                            <span>
+                                →
+                            </span>
+
+                        </a>
+
+
+
+                        <a
+                            href="#"
+                            class="quick-card"
+                        >
+
+                            <div class="quick-icon">
+                                ?
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Contact Support
+                                </strong>
+
+                                <p>
+                                    Get help from our support
+                                    team.
+                                </p>
+
+                            </div>
+
+                            <span>
+                                →
+                            </span>
+
+                        </a>
+
+
+                    </div>
+
+                </section>
+
+
+            </div>
+
+
+
+            <!-- FOOTER -->
+
+            <footer class="dashboard-footer">
+
+                <span>
+                    © 2026 RicozPortal
+                </span>
+
+                <div>
+
+                    <a href="#">
+                        Privacy
+                    </a>
+
+                    <a href="#">
+                        Terms
+                    </a>
+
+                    <a href="#">
+                        Support
+                    </a>
+
+                </div>
+
+            </footer>
+
+
+        </main>
+
+    </div>
+
+
+</body>
+
+</html>
+```

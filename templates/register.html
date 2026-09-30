@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Create Account | RicozPortal</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/register.css') }}"
+    >
+
+</head>
+
+<body>
+
+    <main class="register-page">
+
+        <!-- Left Branding Panel -->
+        <section class="register-brand">
+
+            <div class="brand-circle circle-one"></div>
+            <div class="brand-circle circle-two"></div>
+
+            <div class="register-brand-content">
+
+                <div class="brand-top">
+
+                    <div class="brand-logo">
+                        R
+                    </div>
+
+                    <span class="brand-name">
+                        RicozPortal
+                    </span>
+
+                </div>
+
+
+                <div class="brand-main">
+
+                    <p class="brand-eyebrow">
+                        GET STARTED
+                    </p>
+
+                    <h1>
+                        Create your
+                        <span>RicozPortal account.</span>
+                    </h1>
+
+                    <p class="brand-description">
+                        Join RicozPortal and manage your account,
+                        subscriptions, support requests, billing,
+                        and documents from one secure place.
+                    </p>
+
+
+                    <div class="brand-benefits">
+
+                        <div class="benefit-item">
+
+                            <div class="benefit-icon">
+                                ✓
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Secure Account
+                                </strong>
+
+                                <p>
+                                    Your account credentials are
+                                    securely protected.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="benefit-item">
+
+                            <div class="benefit-icon">
+                                ✓
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Easy Management
+                                </strong>
+
+                                <p>
+                                    Manage your services and
+                                    account information easily.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="benefit-item">
+
+                            <div class="benefit-icon">
+                                ✓
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Customer Support
+                                </strong>
+
+                                <p>
+                                    Get help and track your
+                                    support requests.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="register-brand-footer">
+
+                <span>
+                    © 2026 RicozPortal
+                </span>
+
+                <span>
+                    🔒 Secure customer portal
+                </span>
+
+            </div>
+
+        </section>
+
+
+        <!-- Registration Section -->
+        <section class="register-panel">
+
+            <div class="register-container">
+
+
+                <!-- Mobile Brand -->
+                <div class="mobile-brand">
+
+                    <div class="brand-logo">
+                        R
+                    </div>
+
+                    <span>
+                        RicozPortal
+                    </span>
+
+                </div>
+
+
+                <!-- Registration Header -->
+                <div class="register-header">
+
+                    <p class="register-eyebrow">
+                        CREATE ACCOUNT
+                    </p>
+
+                    <h2>
+                        Create your account
+                    </h2>
+
+                    <p>
+                        Enter your details below to get started.
+                    </p>
+
+                </div>
+
+
+                <!-- Registration Error -->
+                {% if error %}
+
+                    <div class="register-error">
+
+                        <span class="error-icon">
+                            !
+                        </span>
+
+                        <span>
+                            {{ error }}
+                        </span>
+
+                    </div>
+
+                {% endif %}
+
+
+                <!-- Registration Form -->
+                <form
+                    method="POST"
+                    action="{{ url_for('register') }}"
+                >
+
+
+                    <!-- Full Name -->
+                    <div class="form-group">
+
+                        <label for="name">
+                            Full name
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">
+                                👤
+                            </span>
+
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                placeholder="Enter your full name"
+                                value="{{ name or '' }}"
+                                autocomplete="name"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Email -->
+                    <div class="form-group">
+
+                        <label for="email">
+                            Email address
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">
+                                ✉
+                            </span>
+
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="you@example.com"
+                                value="{{ email or '' }}"
+                                autocomplete="email"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Company -->
+                    <div class="form-group">
+
+                        <label for="company">
+
+                            Company
+
+                            <span class="optional">
+                                Optional
+                            </span>
+
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">
+                                ◼
+                            </span>
+
+                            <input
+                                type="text"
+                                id="company"
+                                name="company"
+                                placeholder="Your company name"
+                                value="{{ company or '' }}"
+                                autocomplete="organization"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Password -->
+                    <div class="form-group">
+
+                        <label for="password">
+                            Password
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">
+                                🔒
+                            </span>
+
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="Create a password"
+                                autocomplete="new-password"
+                                required
+                            >
+
+                        </div>
+
+                        <p class="password-hint">
+                            Password must be at least 8 characters.
+                        </p>
+
+                    </div>
+
+
+                    <!-- Confirm Password -->
+                    <div class="form-group">
+
+                        <label for="confirm_password">
+                            Confirm password
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">
+                                🔒
+                            </span>
+
+                            <input
+                                type="password"
+                                id="confirm_password"
+                                name="confirm_password"
+                                placeholder="Enter your password again"
+                                autocomplete="new-password"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Terms -->
+                    <div class="terms-option">
+
+                        <label>
+
+                            <input
+                                type="checkbox"
+                                required
+                            >
+
+                            <span>
+                                I agree to the
+                                <a href="#">
+                                    Terms of Service
+                                </a>
+                                and
+                                <a href="#">
+                                    Privacy Policy
+                                </a>.
+                            </span>
+
+                        </label>
+
+                    </div>
+
+
+                    <!-- Create Account Button -->
+                    <button
+                        type="submit"
+                        class="register-button"
+                    >
+
+                        <span>
+                            Create account
+                        </span>
+
+                        <span class="button-arrow">
+                            →
+                        </span>
+
+                    </button>
+
+                </form>
+
+
+                <!-- Sign In -->
+                <div class="signin-link">
+
+                    <p>
+
+                        Already have an account?
+
+                        <a href="{{ url_for('login') }}">
+                            Sign in
+                        </a>
+
+                    </p>
+
+                </div>
+
+
+                <!-- Footer -->
+                <div class="register-footer">
+
+                    <span>
+                        © 2026 RicozPortal
+                    </span>
+
+                    <span>
+                        Secure customer access
+                    </span>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>
