@@ -1,712 +1,273 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>Terms & Conditions | RicozPortal</title>
+    <title>Terms of Service | Ricoz</title>
 
     <link
         rel="stylesheet"
         href="{{ url_for('static', filename='css/terms.css') }}"
     >
-
 </head>
-
 
 <body>
 
-<div class="dashboard-layout">
+<div class="page-wrapper">
 
+    <header class="top-header">
 
-    <!-- =========================
-         SIDEBAR
-    ========================== -->
+        <div class="brand">
+            <a href="{{ url_for('dashboard') }}">
+                <span class="brand-logo">R</span>
 
-    <aside class="sidebar">
-
-        <div class="sidebar-top">
-
-            <a
-                href="{{ url_for('dashboard') }}"
-                class="brand"
-            >
-
-                <div class="brand-logo">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-
-                <div class="brand-name">
+                <span class="brand-text">
                     <strong>Ricoz</strong>
-                    <span>Portal</span>
-                </div>
-
+                    <small>Customer Portal</small>
+                </span>
             </a>
-
-
-            <div class="sidebar-label">
-                CUSTOMER PORTAL
-            </div>
-
-
-            <nav class="sidebar-nav">
-
-                <a
-                    href="{{ url_for('dashboard') }}"
-                    class="nav-item"
-                >
-                    <span class="nav-icon">⌂</span>
-                    <span>Dashboard</span>
-                </a>
-
-
-                <a
-                    href="{{ url_for('account') }}"
-                    class="nav-item"
-                >
-                    <span class="nav-icon">◉</span>
-                    <span>My Account</span>
-                </a>
-
-
-                <a
-                    href="{{ url_for('subscription') }}"
-                    class="nav-item"
-                >
-                    <span class="nav-icon">▣</span>
-                    <span>Subscription</span>
-                </a>
-
-
-                <a
-                    href="{{ url_for('billing') }}"
-                    class="nav-item"
-                >
-                    <span class="nav-icon">▤</span>
-                    <span>Billing</span>
-                </a>
-
-
-                <a
-                    href="{{ url_for('support') }}"
-                    class="nav-item"
-                >
-                    <span class="nav-icon">?</span>
-                    <span>Support</span>
-                </a>
-
-
-                <a
-                    href="{{ url_for('settings') }}"
-                    class="nav-item"
-                >
-                    <span class="nav-icon">⚙</span>
-                    <span>Settings</span>
-                </a>
-
-            </nav>
-
         </div>
 
+        <nav class="header-nav">
+            <a href="{{ url_for('dashboard') }}">Dashboard</a>
+            <a href="{{ url_for('account') }}">Account</a>
+            <a href="{{ url_for('support') }}">Support</a>
+        </nav>
 
-        <!-- SIDEBAR BOTTOM -->
+    </header>
 
-        <div class="sidebar-bottom">
 
-            <div class="help-card">
+    <main class="terms-container">
 
-                <div class="help-icon">
-                    ?
-                </div>
+        <section class="page-hero">
+
+            <span class="eyebrow">LEGAL &amp; SERVICE TERMS</span>
+
+            <h1>Terms of Service</h1>
+
+            <p>
+                These Terms of Service describe the general rules and
+                conditions for using the Ricoz Customer Portal.
+            </p>
+
+            <span class="updated">
+                Last updated: October 1, 2026
+            </span>
+
+        </section>
+
+
+        <section class="terms-card">
+
+            <div class="terms-section">
+
+                <span class="section-number">01</span>
 
                 <div>
-
-                    <strong>
-                        Need help?
-                    </strong>
+                    <h2>Acceptance of Terms</h2>
 
                     <p>
-                        Our support team is here for you.
+                        By accessing or using the Ricoz Customer Portal,
+                        you agree to follow these Terms of Service and
+                        use the portal responsibly.
                     </p>
-
-                    <a href="{{ url_for('support') }}">
-                        Contact Support →
-                    </a>
-
                 </div>
 
             </div>
 
 
-            <a
-                href="{{ url_for('logout') }}"
-                class="logout-link"
-            >
+            <div class="terms-section">
 
-                <span class="logout-icon">
-                    ↪
-                </span>
-
-                <span>
-                    Sign Out
-                </span>
-
-            </a>
-
-        </div>
-
-    </aside>
-
-
-
-    <!-- =========================
-         MAIN CONTENT
-    ========================== -->
-
-    <main class="main-content">
-
-
-        <!-- TOPBAR -->
-
-        <header class="topbar">
-
-            <div class="mobile-brand">
-
-                <a href="{{ url_for('dashboard') }}">
-
-                    <div class="brand-logo">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-
-                    <div class="brand-name">
-                        <strong>Ricoz</strong>
-                        <span>Portal</span>
-                    </div>
-
-                </a>
-
-            </div>
-
-
-            <div class="topbar-right">
-
-                <a
-                    href="{{ url_for('notifications') }}"
-                    class="notification-button"
-                    aria-label="Notifications"
-                >
-                    <span class="notification-icon">
-                        ♢
-                    </span>
-                </a>
-
-
-                <div class="profile">
-
-                    <div class="profile-avatar">
-                        {{ user["name"][0]|upper }}
-                    </div>
-
-
-                    <div class="profile-info">
-
-                        <strong>
-                            {{ user["name"] }}
-                        </strong>
-
-                        <span>
-                            {{ user["email"] }}
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </header>
-
-
-
-        <!-- =========================
-             PAGE CONTENT
-        ========================== -->
-
-        <div class="page-content">
-
-
-            <!-- PAGE HEADER -->
-
-            <section class="page-header">
-
-                <span class="section-label">
-                    LEGAL INFORMATION
-                </span>
-
-                <h1>
-                    Terms & Conditions
-                </h1>
-
-                <p>
-                    These terms describe the general rules and
-                    conditions for using RicozPortal and its
-                    customer services.
-                </p>
-
-                <div class="last-updated">
-                    Last updated: October 1, 2026
-                </div>
-
-            </section>
-
-
-
-            <!-- =========================
-                 TERMS CONTENT
-            ========================== -->
-
-            <section class="terms-layout">
-
-
-                <!-- MAIN TERMS -->
-
-                <article class="terms-card">
-
-
-                    <div class="terms-section">
-
-                        <span class="terms-number">
-                            01
-                        </span>
-
-                        <div>
-
-                            <h2>
-                                Acceptance of Terms
-                            </h2>
-
-                            <p>
-                                By accessing or using RicozPortal,
-                                you acknowledge that you have read
-                                and understood these terms and agree
-                                to use the portal in accordance with
-                                them.
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <div class="terms-section">
-
-                        <span class="terms-number">
-                            02
-                        </span>
-
-                        <div>
-
-                            <h2>
-                                Account Registration
-                            </h2>
-
-                            <p>
-                                You may need to create an account to
-                                access certain portal features.
-                                Information provided during
-                                registration should be accurate and
-                                kept up to date.
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <div class="terms-section">
-
-                        <span class="terms-number">
-                            03
-                        </span>
-
-                        <div>
-
-                            <h2>
-                                Account Security
-                            </h2>
-
-                            <p>
-                                You are responsible for protecting
-                                your account credentials and for
-                                activity performed through your
-                                account. Do not share your password
-                                with unauthorized individuals.
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <div class="terms-section">
-
-                        <span class="terms-number">
-                            04
-                        </span>
-
-                        <div>
-
-                            <h2>
-                                Acceptable Use
-                            </h2>
-
-                            <p>
-                                RicozPortal should be used only for
-                                legitimate business and customer
-                                service purposes. You must not use
-                                the portal to interfere with its
-                                operation, attempt unauthorized
-                                access, or misuse its services.
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <div class="terms-section">
-
-                        <span class="terms-number">
-                            05
-                        </span>
-
-                        <div>
-
-                            <h2>
-                                Subscriptions & Services
-                            </h2>
-
-                            <p>
-                                Subscription features, service
-                                availability, pricing, and account
-                                benefits may depend on the plan
-                                associated with your account.
-                                Applicable service details are shown
-                                within the portal.
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <div class="terms-section">
-
-                        <span class="terms-number">
-                            06
-                        </span>
-
-                        <div>
-
-                            <h2>
-                                Billing
-                            </h2>
-
-                            <p>
-                                Billing information and invoices
-                                displayed in the portal are provided
-                                for account management purposes.
-                                Questions regarding billing or
-                                payments should be directed to the
-                                support team.
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <div class="terms-section">
-
-                        <span class="terms-number">
-                            07
-                        </span>
-
-                        <div>
-
-                            <h2>
-                                Support Requests
-                            </h2>
-
-                            <p>
-                                Support tickets should contain
-                                accurate and relevant information.
-                                The support team may use submitted
-                                information to investigate and
-                                respond to your request.
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <div class="terms-section">
-
-                        <span class="terms-number">
-                            08
-                        </span>
-
-                        <div>
-
-                            <h2>
-                                Service Availability
-                            </h2>
-
-                            <p>
-                                We aim to keep RicozPortal available
-                                and functional, but temporary
-                                interruptions may occur because of
-                                maintenance, updates, technical
-                                issues, or circumstances outside the
-                                application's control.
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <div class="terms-section">
-
-                        <span class="terms-number">
-                            09
-                        </span>
-
-                        <div>
-
-                            <h2>
-                                Changes to These Terms
-                            </h2>
-
-                            <p>
-                                These terms may be updated when the
-                                portal, services, or operational
-                                requirements change. Updated terms
-                                will be published on this page.
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <div class="terms-section">
-
-                        <span class="terms-number">
-                            10
-                        </span>
-
-                        <div>
-
-                            <h2>
-                                Contact & Support
-                            </h2>
-
-                            <p>
-                                If you have questions about these
-                                terms, your account, billing, or
-                                portal services, please contact the
-                                Ricoz support team through the
-                                Support section.
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <!-- IMPORTANT NOTICE -->
-
-                    <div class="terms-notice">
-
-                        <div class="notice-icon">
-                            !
-                        </div>
-
-                        <div>
-
-                            <h3>
-                                Important Notice
-                            </h3>
-
-                            <p>
-                                These terms are general application
-                                terms for the RicozPortal project.
-                                Specific commercial agreements,
-                                service contracts, or applicable
-                                legal requirements may provide
-                                additional terms where relevant.
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-                </article>
-
-
-
-                <!-- SIDE INFORMATION -->
-
-                <aside class="terms-sidebar">
-
-
-                    <div class="side-card red-card">
-
-                        <div class="side-icon">
-                            ✓
-                        </div>
-
-                        <span class="side-label">
-                            ACCOUNT
-                        </span>
-
-                        <h3>
-                            Manage your account
-                        </h3>
-
-                        <p>
-                            Keep your account information accurate
-                            and review your available portal
-                            services.
-                        </p>
-
-                        <a href="{{ url_for('account') }}">
-                            My Account →
-                        </a>
-
-                    </div>
-
-
-
-                    <div class="side-card">
-
-                        <div class="side-icon">
-                            ?
-                        </div>
-
-                        <span class="side-label">
-                            SUPPORT
-                        </span>
-
-                        <h3>
-                            Need assistance?
-                        </h3>
-
-                        <p>
-                            Contact the support team if you have
-                            questions about your account or services.
-                        </p>
-
-                        <a href="{{ url_for('support') }}">
-                            Contact Support →
-                        </a>
-
-                    </div>
-
-
-
-                    <div class="side-card white-card">
-
-                        <div class="side-icon">
-                            🔒
-                        </div>
-
-                        <span class="side-label">
-                            PRIVACY
-                        </span>
-
-                        <h3>
-                            Your information
-                        </h3>
-
-                        <p>
-                            Learn how information associated with
-                            your RicozPortal account is handled.
-                        </p>
-
-                        <a href="{{ url_for('privacy') }}">
-                            Privacy Policy →
-                        </a>
-
-                    </div>
-
-
-                </aside>
-
-            </section>
-
-
-
-            <!-- =========================
-                 FOOTER
-            ========================== -->
-
-            <footer class="dashboard-footer">
-
-                <span>
-                    © 2026 RicozPortal. All rights reserved.
-                </span>
-
+                <span class="section-number">02</span>
 
                 <div>
+                    <h2>Account Registration</h2>
 
-                    <a href="{{ url_for('privacy') }}">
-                        Privacy
-                    </a>
-
-                    <a href="{{ url_for('terms') }}">
-                        Terms
-                    </a>
-
-                    <a href="{{ url_for('support') }}">
-                        Support
-                    </a>
-
+                    <p>
+                        Users are responsible for providing accurate
+                        account information and maintaining the
+                        confidentiality of their login credentials.
+                    </p>
                 </div>
 
-            </footer>
+            </div>
 
 
-        </div>
+            <div class="terms-section">
+
+                <span class="section-number">03</span>
+
+                <div>
+                    <h2>Account Security</h2>
+
+                    <p>
+                        You are responsible for protecting your password
+                        and account access. If you believe your account
+                        has been compromised, you should contact support
+                        as soon as possible.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="terms-section">
+
+                <span class="section-number">04</span>
+
+                <div>
+                    <h2>Acceptable Use</h2>
+
+                    <p>
+                        The Ricoz Customer Portal must not be used for
+                        unlawful activities, unauthorized access,
+                        abuse of services or activities that may harm
+                        the portal or its users.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="terms-section">
+
+                <span class="section-number">05</span>
+
+                <div>
+                    <h2>Customer Information</h2>
+
+                    <p>
+                        Users should provide information that is
+                        accurate and relevant to their account.
+                        Information submitted through the portal
+                        should not intentionally contain misleading
+                        or harmful content.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="terms-section">
+
+                <span class="section-number">06</span>
+
+                <div>
+                    <h2>Support Requests</h2>
+
+                    <p>
+                        Support requests should contain enough
+                        information for the Ricoz team to understand
+                        and respond to the reported issue.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="terms-section">
+
+                <span class="section-number">07</span>
+
+                <div>
+                    <h2>Service Availability</h2>
+
+                    <p>
+                        Ricoz may perform maintenance, updates or
+                        technical changes that can temporarily affect
+                        portal availability.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="terms-section">
+
+                <span class="section-number">08</span>
+
+                <div>
+                    <h2>Account Suspension</h2>
+
+                    <p>
+                        Access to an account may be restricted when
+                        necessary to protect the service, users or
+                        system security, or when these terms are
+                        violated.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="terms-section">
+
+                <span class="section-number">09</span>
+
+                <div>
+                    <h2>Changes to These Terms</h2>
+
+                    <p>
+                        Ricoz may update these Terms of Service when
+                        necessary. Updated terms will be made available
+                        through the customer portal.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="terms-section">
+
+                <span class="section-number">10</span>
+
+                <div>
+                    <h2>Contact and Support</h2>
+
+                    <p>
+                        If you have questions about these terms or
+                        need assistance with your account, please
+                        contact Ricoz through the Support section of
+                        the customer portal.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section class="bottom-actions">
+
+            <a href="{{ url_for('support') }}" class="support-button">
+                Contact Support
+            </a>
+
+            <a href="{{ url_for('privacy') }}" class="secondary-button">
+                View Privacy Policy
+            </a>
+
+        </section>
 
     </main>
 
+
+    <footer class="footer">
+
+        <div>
+            © 2026 Ricoz. All rights reserved.
+        </div>
+
+        <div class="footer-links">
+            <a href="{{ url_for('privacy') }}">Privacy</a>
+            <a href="{{ url_for('terms') }}">Terms</a>
+            <a href="{{ url_for('support') }}">Support</a>
+        </div>
+
+    </footer>
+
 </div>
 
-
 </body>
-
 </html>
