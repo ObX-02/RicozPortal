@@ -1,14 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Dashboard | RicozPortal</title>
 
@@ -16,149 +10,77 @@
         rel="stylesheet"
         href="{{ url_for('static', filename='css/dashboard.css') }}"
     >
-
 </head>
-
 
 <body>
 
 <div class="dashboard-layout">
 
-
-    <!-- =========================
-         SIDEBAR
-    ========================== -->
-
+    <!-- SIDEBAR -->
     <aside class="sidebar">
 
-        <div class="sidebar-top">
-
-            <a
-                href="{{ url_for('dashboard') }}"
-                class="brand"
-            >
-
-                <div class="brand-logo">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-
-                <div class="brand-name">
-                    <strong>Ricoz</strong>
-                    <span>Portal</span>
-                </div>
-
-            </a>
-
-
-            <div class="sidebar-label">
-                CUSTOMER PORTAL
+        <a href="{{ url_for('dashboard') }}" class="brand">
+            <div class="brand-logo">
+                <span>R</span>
             </div>
 
+            <div class="brand-name">
+                <strong>Ricoz</strong>
+                <small>Customer Portal</small>
+            </div>
+        </a>
 
-            <nav class="sidebar-nav">
+        <nav class="sidebar-nav">
 
-                <a
-                    href="{{ url_for('dashboard') }}"
-                    class="nav-item active"
-                >
-                    <span class="nav-icon">⌂</span>
-                    <span>Dashboard</span>
-                </a>
+            <div class="nav-label">MAIN</div>
 
+            <a href="{{ url_for('dashboard') }}" class="nav-item active">
+                <span class="nav-icon">⌂</span>
+                <span>Dashboard</span>
+            </a>
 
-                <a
-                    href="{{ url_for('account') }}"
-                    class="nav-item"
-                >
-                    <span class="nav-icon">◉</span>
-                    <span>My Account</span>
-                </a>
+            <a href="{{ url_for('account') }}" class="nav-item">
+                <span class="nav-icon">◉</span>
+                <span>My Account</span>
+            </a>
 
+            <a href="{{ url_for('subscription') }}" class="nav-item">
+                <span class="nav-icon">▣</span>
+                <span>Subscription</span>
+            </a>
 
-                <a
-                    href="{{ url_for('subscription') }}"
-                    class="nav-item"
-                >
-                    <span class="nav-icon">▣</span>
-                    <span>Subscription</span>
-                </a>
+            <a href="{{ url_for('billing') }}" class="nav-item">
+                <span class="nav-icon">▤</span>
+                <span>Billing</span>
+            </a>
 
+            <div class="nav-label nav-label-space">SUPPORT</div>
 
-                <a
-                    href="{{ url_for('billing') }}"
-                    class="nav-item"
-                >
-                    <span class="nav-icon">▤</span>
-                    <span>Billing</span>
-                </a>
+            <a href="{{ url_for('support') }}" class="nav-item">
+                <span class="nav-icon">?</span>
+                <span>Support</span>
+            </a>
 
+            <a href="{{ url_for('settings') }}" class="nav-item">
+                <span class="nav-icon">⚙</span>
+                <span>Settings</span>
+            </a>
 
-                <a
-                    href="{{ url_for('support') }}"
-                    class="nav-item"
-                >
-                    <span class="nav-icon">?</span>
-                    <span>Support</span>
-                </a>
-
-
-                <a
-                    href="{{ url_for('settings') }}"
-                    class="nav-item"
-                >
-                    <span class="nav-icon">⚙</span>
-                    <span>Settings</span>
-                </a>
-
-            </nav>
-
-        </div>
-
-
-        <!-- SIDEBAR BOTTOM -->
+        </nav>
 
         <div class="sidebar-bottom">
 
-            <div class="help-card">
+            <a href="{{ url_for('privacy') }}" class="sidebar-small-link">
+                Privacy
+            </a>
 
-                <div class="help-icon">
-                    ?
-                </div>
+            <a href="{{ url_for('terms') }}" class="sidebar-small-link">
+                Terms
+            </a>
 
-                <div>
-
-                    <strong>
-                        Need help?
-                    </strong>
-
-                    <p>
-                        Our support team is here for you.
-                    </p>
-
-                    <a href="{{ url_for('support') }}">
-                        Contact Support →
-                    </a>
-
-                </div>
-
-            </div>
-
-
-            <a
-                href="{{ url_for('logout') }}"
-                class="logout-link"
-            >
-
-                <span class="logout-icon">
-                    ↪
-                </span>
-
-                <span>
-                    Sign Out
-                </span>
-
+            <a href="{{ url_for('logout') }}" class="logout-link">
+                <span class="logout-icon">↪</span>
+                <span>Sign Out</span>
             </a>
 
         </div>
@@ -166,37 +88,26 @@
     </aside>
 
 
-
-    <!-- =========================
-         MAIN CONTENT
-    ========================== -->
-
+    <!-- MAIN CONTENT -->
     <main class="main-content">
 
-
         <!-- TOPBAR -->
-
         <header class="topbar">
 
             <div class="mobile-brand">
 
-                <a href="{{ url_for('dashboard') }}">
-
+                <a href="{{ url_for('dashboard') }}" class="brand">
                     <div class="brand-logo">
-                        <span></span>
-                        <span></span>
-                        <span></span>
+                        <span>R</span>
                     </div>
 
                     <div class="brand-name">
                         <strong>Ricoz</strong>
-                        <span>Portal</span>
+                        <small>Customer Portal</small>
                     </div>
-
                 </a>
 
             </div>
-
 
             <div class="topbar-right">
 
@@ -205,395 +116,233 @@
                     class="notification-button"
                     aria-label="Notifications"
                 >
-                    <span class="notification-icon">
-                        ♢
-                    </span>
+                    <span class="notification-icon">♢</span>
+
+                    {% if notifications %}
+                        <span class="notification-dot"></span>
+                    {% endif %}
                 </a>
 
+                <div class="topbar-divider"></div>
 
-                <div class="profile">
+                <a href="{{ url_for('account') }}" class="profile-link">
 
                     <div class="profile-avatar">
-                        {{ user["name"][0]|upper }}
+                        {{ user["name"][0]|upper if user["name"] else "U" }}
                     </div>
-
 
                     <div class="profile-info">
-
-                        <strong>
-                            {{ user["name"] }}
-                        </strong>
-
-                        <span>
-                            {{ user["email"] }}
-                        </span>
-
+                        <strong>{{ user["name"] }}</strong>
+                        <span>{{ user["email"] }}</span>
                     </div>
 
-                </div>
+                    <span class="profile-arrow">⌄</span>
+
+                </a>
 
             </div>
 
         </header>
 
 
-
-        <!-- =========================
-             PAGE CONTENT
-        ========================== -->
-
+        <!-- PAGE CONTENT -->
         <div class="page-content">
 
-
             <!-- WELCOME -->
-
             <section class="welcome-section">
 
-                <div>
+                <div class="welcome-text">
 
-                    <span class="section-label">
-                        CUSTOMER DASHBOARD
-                    </span>
+                    <span class="eyebrow">CUSTOMER DASHBOARD</span>
 
                     <h1>
-                        Welcome back, {{ user["name"] }}!
+                        Welcome back,
+                        <span>{{ user["name"] }}</span>!
                     </h1>
 
                     <p>
-                        Manage your account, subscription,
-                        billing and support requests from one place.
+                        Manage your account, subscription, billing and
+                        support requests from one place.
                     </p>
 
                 </div>
 
-
-                <a
-                    href="{{ url_for('account') }}"
-                    class="primary-button"
-                >
+                <a href="{{ url_for('account') }}" class="primary-button">
                     Manage Account
+                    <span>→</span>
                 </a>
 
             </section>
 
 
-
-            <!-- =========================
-                 OVERVIEW CARDS
-            ========================== -->
-
+            <!-- STATS -->
             <section class="stats-grid">
 
+                <a href="{{ url_for('account') }}" class="stat-card">
 
-                <!-- ACCOUNT -->
-
-                <a
-                    href="{{ url_for('account') }}"
-                    class="stat-card"
-                >
-
-                    <div class="stat-icon red-icon">
-                        ◉
+                    <div class="stat-top">
+                        <div class="stat-icon red-icon">◉</div>
+                        <span class="stat-arrow">↗</span>
                     </div>
 
-                    <div class="stat-content">
+                    <div class="stat-label">ACCOUNT</div>
 
-                        <span class="stat-label">
-                            ACCOUNT
-                        </span>
-
-                        <h3>
-                            Active
-                        </h3>
-
-                        <p>
-                            View your account details
-                        </p>
-
+                    <div class="stat-value">
+                        Active
                     </div>
 
-                    <span class="card-arrow">
-                        →
-                    </span>
+                    <div class="stat-description">
+                        View your account details
+                    </div>
 
                 </a>
 
 
+                <a href="{{ url_for('subscription') }}" class="stat-card">
 
-                <!-- PLAN -->
-
-                <a
-                    href="{{ url_for('subscription') }}"
-                    class="stat-card"
-                >
-
-                    <div class="stat-icon red-icon">
-                        ▣
+                    <div class="stat-top">
+                        <div class="stat-icon red-icon">▣</div>
+                        <span class="stat-arrow">↗</span>
                     </div>
 
-                    <div class="stat-content">
+                    <div class="stat-label">CURRENT PLAN</div>
 
-                        <span class="stat-label">
-                            CURRENT PLAN
-                        </span>
-
-                        <h3>
-                            {{ user["plan"] }}
-                        </h3>
-
-                        <p>
-                            View subscription details
-                        </p>
-
+                    <div class="stat-value">
+                        {{ user["plan"] }}
                     </div>
 
-                    <span class="card-arrow">
-                        →
-                    </span>
+                    <div class="stat-description">
+                        View subscription details
+                    </div>
 
                 </a>
 
 
+                <a href="{{ url_for('support') }}" class="stat-card">
 
-                <!-- SUPPORT -->
-
-                <a
-                    href="{{ url_for('support') }}"
-                    class="stat-card"
-                >
-
-                    <div class="stat-icon red-icon">
-                        ?
+                    <div class="stat-top">
+                        <div class="stat-icon red-icon">?</div>
+                        <span class="stat-arrow">↗</span>
                     </div>
 
-                    <div class="stat-content">
+                    <div class="stat-label">OPEN TICKETS</div>
 
-                        <span class="stat-label">
-                            OPEN TICKETS
-                        </span>
-
-                        <h3>
-                            {{ ticket_count }}
-                        </h3>
-
-                        <p>
-                            View support requests
-                        </p>
-
+                    <div class="stat-value">
+                        {{ ticket_count }}
                     </div>
 
-                    <span class="card-arrow">
-                        →
-                    </span>
+                    <div class="stat-description">
+                        View support requests
+                    </div>
 
                 </a>
 
 
+                <a href="{{ url_for('billing') }}" class="stat-card">
 
-                <!-- BILLING -->
-
-                <a
-                    href="{{ url_for('billing') }}"
-                    class="stat-card"
-                >
-
-                    <div class="stat-icon red-icon">
-                        ▤
+                    <div class="stat-top">
+                        <div class="stat-icon red-icon">▤</div>
+                        <span class="stat-arrow">↗</span>
                     </div>
 
-                    <div class="stat-content">
+                    <div class="stat-label">BILLING</div>
 
-                        <span class="stat-label">
-                            BILLING
-                        </span>
-
-                        <h3>
-                            View
-                        </h3>
-
-                        <p>
-                            Manage invoices and billing
-                        </p>
-
+                    <div class="stat-value billing-value">
+                        View
                     </div>
 
-                    <span class="card-arrow">
-                        →
-                    </span>
+                    <div class="stat-description">
+                        Manage invoices and billing
+                    </div>
 
                 </a>
 
             </section>
 
 
+            <!-- QUICK ACTIONS -->
+            <section class="dashboard-section">
 
-            <!-- =========================
-                 MAIN DASHBOARD GRID
-            ========================== -->
+                <div class="section-heading">
+                    <span class="eyebrow">QUICK ACTIONS</span>
 
-            <section class="dashboard-grid">
-
-
-                <!-- QUICK ACTIONS -->
-
-                <div class="dashboard-card">
-
-                    <div class="card-header">
-
-                        <div>
-
-                            <span class="card-label">
-                                QUICK ACTIONS
-                            </span>
-
-                            <h2>
-                                Manage your portal
-                            </h2>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="quick-actions">
-
-
-                        <a
-                            href="{{ url_for('account') }}"
-                            class="quick-action"
-                        >
-
-                            <div class="quick-icon">
-                                ◉
-                            </div>
-
-                            <div>
-
-                                <strong>
-                                    My Account
-                                </strong>
-
-                                <span>
-                                    Update your profile
-                                </span>
-
-                            </div>
-
-                            <span class="action-arrow">
-                                →
-                            </span>
-
-                        </a>
-
-
-
-                        <a
-                            href="{{ url_for('subscription') }}"
-                            class="quick-action"
-                        >
-
-                            <div class="quick-icon">
-                                ▣
-                            </div>
-
-                            <div>
-
-                                <strong>
-                                    Subscription
-                                </strong>
-
-                                <span>
-                                    View your current plan
-                                </span>
-
-                            </div>
-
-                            <span class="action-arrow">
-                                →
-                            </span>
-
-                        </a>
-
-
-
-                        <a
-                            href="{{ url_for('billing') }}"
-                            class="quick-action"
-                        >
-
-                            <div class="quick-icon">
-                                ▤
-                            </div>
-
-                            <div>
-
-                                <strong>
-                                    Billing
-                                </strong>
-
-                                <span>
-                                    Review invoices
-                                </span>
-
-                            </div>
-
-                            <span class="action-arrow">
-                                →
-                            </span>
-
-                        </a>
-
-
-
-                        <a
-                            href="{{ url_for('support') }}"
-                            class="quick-action"
-                        >
-
-                            <div class="quick-icon">
-                                ?
-                            </div>
-
-                            <div>
-
-                                <strong>
-                                    New Support Ticket
-                                </strong>
-
-                                <span>
-                                    Get help from our team
-                                </span>
-
-                            </div>
-
-                            <span class="action-arrow">
-                                →
-                            </span>
-
-                        </a>
-
-                    </div>
-
+                    <h2>Manage your portal</h2>
                 </div>
 
 
+                <div class="quick-actions">
 
-                <!-- SUBSCRIPTION CARD -->
+                    <a href="{{ url_for('account') }}" class="quick-action">
 
-                <div class="dashboard-card subscription-card">
+                        <div class="quick-icon">◉</div>
+
+                        <div class="quick-content">
+                            <strong>My Account</strong>
+                            <span>Update your profile</span>
+                        </div>
+
+                        <span class="quick-arrow">→</span>
+
+                    </a>
+
+
+                    <a href="{{ url_for('subscription') }}" class="quick-action">
+
+                        <div class="quick-icon">▣</div>
+
+                        <div class="quick-content">
+                            <strong>Subscription</strong>
+                            <span>View your current plan</span>
+                        </div>
+
+                        <span class="quick-arrow">→</span>
+
+                    </a>
+
+
+                    <a href="{{ url_for('billing') }}" class="quick-action">
+
+                        <div class="quick-icon">▤</div>
+
+                        <div class="quick-content">
+                            <strong>Billing</strong>
+                            <span>Review invoices</span>
+                        </div>
+
+                        <span class="quick-arrow">→</span>
+
+                    </a>
+
+
+                    <a href="{{ url_for('support') }}" class="quick-action">
+
+                        <div class="quick-icon">?</div>
+
+                        <div class="quick-content">
+                            <strong>New Support Ticket</strong>
+                            <span>Get help from our team</span>
+                        </div>
+
+                        <span class="quick-arrow">→</span>
+
+                    </a>
+
+                </div>
+
+            </section>
+
+
+            <!-- TWO COLUMN AREA -->
+            <div class="content-grid">
+
+                <!-- SUBSCRIPTION -->
+                <section class="dashboard-card subscription-card">
 
                     <div class="card-header">
 
                         <div>
-
-                            <span class="card-label">
-                                YOUR SUBSCRIPTION
-                            </span>
-
-                            <h2>
-                                {{ user["plan"] }}
-                            </h2>
-
+                            <span class="eyebrow">YOUR SUBSCRIPTION</span>
+                            <h2>{{ user["plan"] }}</h2>
                         </div>
 
                         <span class="status-badge">
@@ -602,79 +351,44 @@
 
                     </div>
 
-
                     <div class="subscription-price">
 
                         {% if user["plan"]|lower == "free" %}
-
-                            <strong>
-                                $0
-                            </strong>
-
-                            <span>
-                                / month
-                            </span>
-
+                            <strong>$0</strong>
                         {% else %}
-
-                            <strong>
-                                $49
-                            </strong>
-
-                            <span>
-                                / month
-                            </span>
-
+                            <strong>$49</strong>
                         {% endif %}
+
+                        <span>/ month</span>
 
                     </div>
 
-
-                    <p class="subscription-description">
+                    <p class="card-text">
                         Your current RicozPortal plan is active.
                         Manage your subscription to view available
                         features and plan information.
                     </p>
 
-
                     <a
                         href="{{ url_for('subscription') }}"
-                        class="card-button"
+                        class="secondary-button"
                     >
                         Manage Subscription
+                        <span>→</span>
                     </a>
 
-                </div>
-
-            </section>
-
-
-
-            <!-- =========================
-                 ACTIVITY + SUPPORT
-            ========================== -->
-
-            <section class="dashboard-grid secondary-grid">
+                </section>
 
 
                 <!-- RECENT ACTIVITY -->
-
-                <div class="dashboard-card">
+                <section class="dashboard-card activity-card">
 
                     <div class="card-header">
 
                         <div>
-
-                            <span class="card-label">
-                                RECENT ACTIVITY
-                            </span>
-
-                            <h2>
-                                Notifications
-                            </h2>
-
+                            <span class="eyebrow">RECENT ACTIVITY</span>
+                            <h2>Notifications</h2>
                         </div>
-
 
                         <a
                             href="{{ url_for('notifications') }}"
@@ -686,9 +400,9 @@
                     </div>
 
 
-                    <div class="activity-list">
+                    {% if notifications %}
 
-                        {% if notifications %}
+                        <div class="activity-list">
 
                             {% for notification in notifications[:4] %}
 
@@ -700,10 +414,9 @@
                                         {% elif notification["type"] == "warning" %}
                                             !
                                         {% else %}
-                                            i
+                                            •
                                         {% endif %}
                                     </div>
-
 
                                     <div class="activity-content">
 
@@ -715,9 +428,9 @@
                                             {{ notification["message"] }}
                                         </p>
 
-                                        <span>
-                                            {{ notification["created_at"].strftime("%b %d, %Y %I:%M %p") }}
-                                        </span>
+                                        <small>
+                                            {{ notification["created_at"] }}
+                                        </small>
 
                                     </div>
 
@@ -725,88 +438,67 @@
 
                             {% endfor %}
 
-                        {% else %}
+                        </div>
 
-                            <div class="empty-activity">
+                    {% else %}
 
-                                <div class="empty-icon">
-                                    ✓
-                                </div>
+                        <div class="empty-state">
 
-                                <strong>
-                                    You're all caught up
-                                </strong>
+                            <div class="empty-icon">✓</div>
 
-                                <p>
-                                    No recent notifications.
-                                </p>
+                            <h3>You're all caught up</h3>
 
-                            </div>
+                            <p>No recent notifications.</p>
 
-                        {% endif %}
+                        </div>
 
-                    </div>
+                    {% endif %}
 
+                </section>
+
+            </div>
+
+
+            <!-- SUPPORT BANNER -->
+            <section class="support-banner">
+
+                <div class="support-banner-icon">
+                    ?
                 </div>
 
+                <div class="support-banner-content">
 
+                    <span class="eyebrow">NEED ASSISTANCE?</span>
 
-                <!-- SUPPORT CARD -->
-
-                <div class="dashboard-card support-card">
-
-                    <div class="support-icon">
-                        ?
-                    </div>
-
-                    <span class="card-label">
-                        NEED ASSISTANCE?
-                    </span>
-
-                    <h2>
-                        We're here to help.
-                    </h2>
+                    <h2>We're here to help.</h2>
 
                     <p>
                         Have a question or facing an issue?
-                        Create a support ticket and our team
-                        will help you.
+                        Create a support ticket and our team will help you.
                     </p>
 
-
-                    <a
-                        href="{{ url_for('support') }}"
-                        class="card-button"
-                    >
-                        New Support Ticket
-                    </a>
-
                 </div>
+
+                <a
+                    href="{{ url_for('support') }}"
+                    class="support-button"
+                >
+                    New Support Ticket
+                    <span>→</span>
+                </a>
 
             </section>
 
 
-
-            <!-- =========================
-                 ACCOUNT INFORMATION
-            ========================== -->
-
-            <section class="dashboard-card account-summary">
+            <!-- ACCOUNT INFORMATION -->
+            <section class="dashboard-card account-card">
 
                 <div class="card-header">
 
                     <div>
-
-                        <span class="card-label">
-                            ACCOUNT INFORMATION
-                        </span>
-
-                        <h2>
-                            Your profile
-                        </h2>
-
+                        <span class="eyebrow">ACCOUNT INFORMATION</span>
+                        <h2>Your profile</h2>
                     </div>
-
 
                     <a
                         href="{{ url_for('account') }}"
@@ -818,58 +510,33 @@
                 </div>
 
 
-                <div class="account-info-grid">
+                <div class="account-grid">
 
-
-                    <div class="account-info-item">
-
-                        <span>
-                            FULL NAME
-                        </span>
-
-                        <strong>
-                            {{ user["name"] }}
-                        </strong>
-
+                    <div class="account-field">
+                        <span>FULL NAME</span>
+                        <strong>{{ user["name"] }}</strong>
                     </div>
 
-
-                    <div class="account-info-item">
-
-                        <span>
-                            EMAIL ADDRESS
-                        </span>
-
-                        <strong>
-                            {{ user["email"] }}
-                        </strong>
-
+                    <div class="account-field">
+                        <span>EMAIL ADDRESS</span>
+                        <strong>{{ user["email"] }}</strong>
                     </div>
 
-
-                    <div class="account-info-item">
-
-                        <span>
-                            COMPANY
-                        </span>
+                    <div class="account-field">
+                        <span>COMPANY</span>
 
                         <strong>
-                            {{ user["company"] or "Not provided" }}
+                            {% if user["company"] %}
+                                {{ user["company"] }}
+                            {% else %}
+                                Not provided
+                            {% endif %}
                         </strong>
-
                     </div>
 
-
-                    <div class="account-info-item">
-
-                        <span>
-                            ACCOUNT STATUS
-                        </span>
-
-                        <strong class="active-text">
-                            Active
-                        </strong>
-
+                    <div class="account-field">
+                        <span>ACCOUNT STATUS</span>
+                        <strong class="active-text">Active</strong>
                     </div>
 
                 </div>
@@ -877,19 +544,14 @@
             </section>
 
 
-
-            <!-- =========================
-                 FOOTER
-            ========================== -->
-
+            <!-- FOOTER -->
             <footer class="dashboard-footer">
 
-                <span>
-                    © 2026 RicozPortal. All rights reserved.
-                </span>
-
-
                 <div>
+                    © 2026 RicozPortal. All rights reserved.
+                </div>
+
+                <div class="footer-links">
 
                     <a href="{{ url_for('privacy') }}">
                         Privacy
@@ -907,14 +569,11 @@
 
             </footer>
 
-
         </div>
 
     </main>
 
 </div>
 
-
 </body>
-
 </html>
