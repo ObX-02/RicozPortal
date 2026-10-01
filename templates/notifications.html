@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Notifications | RicozPortal</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/notifications.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+<div class="dashboard-layout">
+
+
+    <!-- =========================
+         SIDEBAR
+    ========================== -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-top">
+
+            <a
+                href="{{ url_for('dashboard') }}"
+                class="brand"
+            >
+
+                <div class="brand-logo">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <div class="brand-name">
+                    <strong>Ricoz</strong>
+                    <span>Portal</span>
+                </div>
+
+            </a>
+
+
+            <div class="sidebar-label">
+                CUSTOMER PORTAL
+            </div>
+
+
+            <nav class="sidebar-nav">
+
+                <a
+                    href="{{ url_for('dashboard') }}"
+                    class="nav-item"
+                >
+                    <span class="nav-icon">⌂</span>
+                    <span>Dashboard</span>
+                </a>
+
+
+                <a
+                    href="{{ url_for('account') }}"
+                    class="nav-item"
+                >
+                    <span class="nav-icon">◉</span>
+                    <span>My Account</span>
+                </a>
+
+
+                <a
+                    href="{{ url_for('subscription') }}"
+                    class="nav-item"
+                >
+                    <span class="nav-icon">▣</span>
+                    <span>Subscription</span>
+                </a>
+
+
+                <a
+                    href="{{ url_for('billing') }}"
+                    class="nav-item"
+                >
+                    <span class="nav-icon">▤</span>
+                    <span>Billing</span>
+                </a>
+
+
+                <a
+                    href="{{ url_for('support') }}"
+                    class="nav-item"
+                >
+                    <span class="nav-icon">?</span>
+                    <span>Support</span>
+                </a>
+
+
+                <a
+                    href="{{ url_for('settings') }}"
+                    class="nav-item"
+                >
+                    <span class="nav-icon">⚙</span>
+                    <span>Settings</span>
+                </a>
+
+            </nav>
+
+        </div>
+
+
+        <!-- SIDEBAR BOTTOM -->
+
+        <div class="sidebar-bottom">
+
+            <div class="help-card">
+
+                <div class="help-icon">
+                    ?
+                </div>
+
+                <div>
+
+                    <strong>
+                        Need help?
+                    </strong>
+
+                    <p>
+                        Our support team is here for you.
+                    </p>
+
+                    <a href="{{ url_for('support') }}">
+                        Contact Support →
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <a
+                href="{{ url_for('logout') }}"
+                class="logout-link"
+            >
+
+                <span class="logout-icon">
+                    ↪
+                </span>
+
+                <span>
+                    Sign Out
+                </span>
+
+            </a>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <main class="main-content">
+
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <div class="mobile-brand">
+
+                <a href="{{ url_for('dashboard') }}">
+
+                    <div class="brand-logo">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                    <div class="brand-name">
+                        <strong>Ricoz</strong>
+                        <span>Portal</span>
+                    </div>
+
+                </a>
+
+            </div>
+
+
+            <div class="topbar-right">
+
+                <a
+                    href="{{ url_for('notifications') }}"
+                    class="notification-button active"
+                    aria-label="Notifications"
+                >
+                    <span class="notification-icon">
+                        ♢
+                    </span>
+                </a>
+
+
+                <div class="profile">
+
+                    <div class="profile-avatar">
+                        {{ user["name"][0]|upper }}
+                    </div>
+
+
+                    <div class="profile-info">
+
+                        <strong>
+                            {{ user["name"] }}
+                        </strong>
+
+                        <span>
+                            {{ user["email"] }}
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =========================
+             PAGE CONTENT
+        ========================== -->
+
+        <div class="page-content">
+
+
+            <!-- PAGE INTRO -->
+
+            <section class="welcome-section">
+
+                <div>
+
+                    <span class="section-label">
+                        ACCOUNT ACTIVITY
+                    </span>
+
+                    <h1>
+                        Notifications
+                    </h1>
+
+                    <p>
+                        Stay up to date with your RicozPortal
+                        account, support requests, and important
+                        updates.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =========================
+                 NOTIFICATIONS CARD
+            ========================== -->
+
+            <section class="notifications-card">
+
+
+                <div class="notifications-header">
+
+                    <div>
+
+                        <h2>
+                            Recent Notifications
+                        </h2>
+
+                        <p>
+                            Your latest account activity and updates.
+                        </p>
+
+                    </div>
+
+
+                    <div class="notification-count">
+
+                        {{ notifications|length }}
+
+                        {% if notifications|length == 1 %}
+                            Notification
+                        {% else %}
+                            Notifications
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+
+
+                {% if notifications %}
+
+                    <div class="notification-list">
+
+                        {% for notification in notifications %}
+
+                            <div
+                                class="notification-item
+                                {% if not notification['is_read'] %}
+                                    unread
+                                {% endif %}"
+                            >
+
+
+                                <div class="notification-item-icon">
+
+                                    {% if notification["type"] == "support" %}
+
+                                        ?
+
+                                    {% elif notification["type"] == "billing" %}
+
+                                        $
+
+                                    {% elif notification["type"] == "account" %}
+
+                                        ◉
+
+                                    {% else %}
+
+                                        !
+
+                                    {% endif %}
+
+                                </div>
+
+
+                                <div class="notification-content">
+
+                                    <div class="notification-title-row">
+
+                                        <h3>
+                                            {{ notification["title"] }}
+                                        </h3>
+
+                                        {% if not notification["is_read"] %}
+
+                                            <span class="new-badge">
+                                                NEW
+                                            </span>
+
+                                        {% endif %}
+
+                                    </div>
+
+
+                                    <p>
+                                        {{ notification["message"] }}
+                                    </p>
+
+
+                                    <span class="notification-date">
+
+                                        {{ notification["created_at"].strftime("%B %d, %Y at %I:%M %p") }}
+
+                                    </span>
+
+                                </div>
+
+
+                            </div>
+
+                        {% endfor %}
+
+                    </div>
+
+                {% else %}
+
+
+                    <!-- EMPTY STATE -->
+
+                    <div class="empty-state">
+
+                        <div class="empty-icon">
+                            ♢
+                        </div>
+
+                        <h3>
+                            No notifications yet
+                        </h3>
+
+                        <p>
+                            You are all caught up. New account
+                            updates and support activity will appear here.
+                        </p>
+
+                        <a
+                            href="{{ url_for('dashboard') }}"
+                            class="primary-button"
+                        >
+                            Back to Dashboard
+                        </a>
+
+                    </div>
+
+                {% endif %}
+
+            </section>
+
+
+
+            <!-- =========================
+                 INFORMATION CARDS
+            ========================== -->
+
+            <section class="info-grid">
+
+
+                <div class="info-card">
+
+                    <div class="info-icon">
+                        ✓
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Account Updates
+                        </h3>
+
+                        <p>
+                            Important changes and updates related
+                            to your RicozPortal account will appear
+                            in your notifications.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="info-card">
+
+                    <div class="info-icon">
+                        ?
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Support Activity
+                        </h3>
+
+                        <p>
+                            Updates about your support requests
+                            can be viewed here after you contact
+                            the Ricoz support team.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =========================
+                 SUPPORT CTA
+            ========================== -->
+
+            <section class="support-cta">
+
+                <div class="support-cta-icon">
+                    ?
+                </div>
+
+
+                <div class="support-cta-content">
+
+                    <span>
+                        NEED ASSISTANCE?
+                    </span>
+
+                    <h2>
+                        Have a question about your account?
+                    </h2>
+
+                    <p>
+                        Contact the Ricoz support team if you
+                        need help with your account or services.
+                    </p>
+
+                </div>
+
+
+                <a
+                    href="{{ url_for('support') }}"
+                    class="secondary-button"
+                >
+                    Contact Support
+                </a>
+
+            </section>
+
+
+
+            <!-- =========================
+                 FOOTER
+            ========================== -->
+
+            <footer class="dashboard-footer">
+
+                <span>
+                    © 2026 RicozPortal. All rights reserved.
+                </span>
+
+
+                <div>
+
+                    <a href="{{ url_for('privacy') }}">
+                        Privacy
+                    </a>
+
+                    <a href="{{ url_for('terms') }}">
+                        Terms
+                    </a>
+
+                    <a href="{{ url_for('support') }}">
+                        Support
+                    </a>
+
+                </div>
+
+            </footer>
+
+
+        </div>
+
+    </main>
+
+</div>
+
+
+</body>
+
+</html>

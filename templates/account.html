@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>My Account | RicozPortal</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/account.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+<div class="dashboard-layout">
+
+
+    <!-- =========================
+         SIDEBAR
+    ========================== -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-top">
+
+            <a
+                href="{{ url_for('dashboard') }}"
+                class="brand"
+            >
+
+                <div class="brand-logo">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <div class="brand-name">
+                    <strong>Ricoz</strong>
+                    <span>Portal</span>
+                </div>
+
+            </a>
+
+
+            <div class="sidebar-label">
+                CUSTOMER PORTAL
+            </div>
+
+
+            <nav class="sidebar-nav">
+
+                <a
+                    href="{{ url_for('dashboard') }}"
+                    class="nav-item"
+                >
+                    <span class="nav-icon">⌂</span>
+                    <span>Dashboard</span>
+                </a>
+
+
+                <a
+                    href="{{ url_for('account') }}"
+                    class="nav-item active"
+                >
+                    <span class="nav-icon">◉</span>
+                    <span>My Account</span>
+                </a>
+
+
+                <a
+                    href="{{ url_for('subscription') }}"
+                    class="nav-item"
+                >
+                    <span class="nav-icon">▣</span>
+                    <span>Subscription</span>
+                </a>
+
+
+                <a
+                    href="{{ url_for('billing') }}"
+                    class="nav-item"
+                >
+                    <span class="nav-icon">▤</span>
+                    <span>Billing</span>
+                </a>
+
+
+                <a
+                    href="{{ url_for('support') }}"
+                    class="nav-item"
+                >
+                    <span class="nav-icon">?</span>
+                    <span>Support</span>
+                </a>
+
+
+                <a
+                    href="{{ url_for('settings') }}"
+                    class="nav-item"
+                >
+                    <span class="nav-icon">⚙</span>
+                    <span>Settings</span>
+                </a>
+
+            </nav>
+
+        </div>
+
+
+        <!-- SIDEBAR BOTTOM -->
+
+        <div class="sidebar-bottom">
+
+            <div class="help-card">
+
+                <div class="help-icon">
+                    ?
+                </div>
+
+                <div>
+
+                    <strong>
+                        Need help?
+                    </strong>
+
+                    <p>
+                        Our support team is here for you.
+                    </p>
+
+                    <a href="{{ url_for('support') }}">
+                        Contact Support →
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <a
+                href="{{ url_for('logout') }}"
+                class="logout-link"
+            >
+
+                <span class="logout-icon">
+                    ↪
+                </span>
+
+                <span>
+                    Sign Out
+                </span>
+
+            </a>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <main class="main-content">
+
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <div class="mobile-brand">
+
+                <a href="{{ url_for('dashboard') }}">
+
+                    <div class="brand-logo">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                    <div class="brand-name">
+                        <strong>Ricoz</strong>
+                        <span>Portal</span>
+                    </div>
+
+                </a>
+
+            </div>
+
+
+            <div class="topbar-right">
+
+                <a
+                    href="{{ url_for('notifications') }}"
+                    class="notification-button"
+                    aria-label="Notifications"
+                >
+
+                    <span class="notification-icon">
+                        ♢
+                    </span>
+
+                </a>
+
+
+                <div class="profile">
+
+                    <div class="profile-avatar">
+                        {{ user["name"][0]|upper }}
+                    </div>
+
+
+                    <div class="profile-info">
+
+                        <strong>
+                            {{ user["name"] }}
+                        </strong>
+
+                        <span>
+                            {{ user["email"] }}
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =========================
+             PAGE CONTENT
+        ========================== -->
+
+        <div class="page-content">
+
+
+            <!-- PAGE INTRO -->
+
+            <section class="welcome-section">
+
+                <div>
+
+                    <span class="section-label">
+                        ACCOUNT
+                    </span>
+
+                    <h1>
+                        My Account
+                    </h1>
+
+                    <p>
+                        Manage your personal and company information.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =========================
+                 SUCCESS MESSAGE
+            ========================== -->
+
+            {% if success %}
+
+            <div class="message success-message">
+
+                {{ success }}
+
+            </div>
+
+            {% endif %}
+
+
+
+            <!-- =========================
+                 ERROR MESSAGE
+            ========================== -->
+
+            {% if error %}
+
+            <div class="message error-message">
+
+                {{ error }}
+
+            </div>
+
+            {% endif %}
+
+
+
+            <!-- =========================
+                 ACCOUNT GRID
+            ========================== -->
+
+            <section class="dashboard-grid">
+
+
+                <!-- PROFILE INFORMATION -->
+
+                <div class="dashboard-card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <span class="card-label">
+                                PROFILE
+                            </span>
+
+                            <h2>
+                                Personal Information
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+
+                    <form
+                        method="POST"
+                        action="{{ url_for('account') }}"
+                    >
+
+
+                        <!-- FULL NAME -->
+
+                        <div class="form-group">
+
+                            <label for="name">
+                                Full Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                value="{{ user['name'] }}"
+                                required
+                            >
+
+                        </div>
+
+
+
+                        <!-- EMAIL -->
+
+                        <div class="form-group">
+
+                            <label for="email">
+                                Email Address
+                            </label>
+
+                            <input
+                                type="email"
+                                id="email"
+                                value="{{ user['email'] }}"
+                                disabled
+                            >
+
+                            <small>
+                                Your email address cannot be changed here.
+                            </small>
+
+                        </div>
+
+
+
+                        <!-- COMPANY -->
+
+                        <div class="form-group">
+
+                            <label for="company">
+                                Company
+                            </label>
+
+                            <input
+                                type="text"
+                                id="company"
+                                name="company"
+                                value="{{ user['company'] or '' }}"
+                                placeholder="Enter your company name"
+                            >
+
+                        </div>
+
+
+
+                        <!-- SAVE -->
+
+                        <button
+                            type="submit"
+                            class="primary-button"
+                        >
+                            Save Changes
+                        </button>
+
+                    </form>
+
+                </div>
+
+
+
+                <!-- =========================
+                     ACCOUNT DETAILS
+                ========================== -->
+
+                <div class="dashboard-card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <span class="card-label">
+                                ACCOUNT DETAILS
+                            </span>
+
+                            <h2>
+                                Account Overview
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="activity-list">
+
+
+                        <!-- ACCOUNT STATUS -->
+
+                        <div class="activity-item">
+
+                            <div class="activity-icon green">
+                                ✓
+                            </div>
+
+                            <div class="activity-content">
+
+                                <strong>
+                                    Account Status
+                                </strong>
+
+                                <span>
+                                    Your account is active.
+                                </span>
+
+                            </div>
+
+                            <strong>
+                                Active
+                            </strong>
+
+                        </div>
+
+
+
+                        <!-- CURRENT PLAN -->
+
+                        <div class="activity-item">
+
+                            <div class="activity-icon blue">
+                                ◇
+                            </div>
+
+                            <div class="activity-content">
+
+                                <strong>
+                                    Current Plan
+                                </strong>
+
+                                <span>
+                                    Your active subscription plan.
+                                </span>
+
+                            </div>
+
+                            <strong>
+                                {{ user["plan"] or "Free" }}
+                            </strong>
+
+                        </div>
+
+
+
+                        <!-- CUSTOMER ID -->
+
+                        <div class="activity-item">
+
+                            <div class="activity-icon purple">
+                                #
+                            </div>
+
+                            <div class="activity-content">
+
+                                <strong>
+                                    Customer ID
+                                </strong>
+
+                                <span>
+                                    Your RicozPortal account ID.
+                                </span>
+
+                            </div>
+
+                            <strong>
+                                #{{ user["id"] }}
+                            </strong>
+
+                        </div>
+
+
+
+                        <!-- MEMBER SINCE -->
+
+                        <div class="activity-item">
+
+                            <div class="activity-icon blue">
+                                ◷
+                            </div>
+
+                            <div class="activity-content">
+
+                                <strong>
+                                    Member Since
+                                </strong>
+
+                                <span>
+                                    Account registration date.
+                                </span>
+
+                            </div>
+
+                            <strong>
+                                {{ user["created_at"].strftime("%b %d, %Y") }}
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =========================
+                 SECURITY
+            ========================== -->
+
+            <section class="dashboard-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <span class="card-label">
+                            SECURITY
+                        </span>
+
+                        <h2>
+                            Account Security
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <p class="card-description">
+
+                    Keep your account secure by using a strong,
+                    unique password. You can change your password
+                    anytime from Settings.
+
+                </p>
+
+
+                <a
+                    href="{{ url_for('settings') }}"
+                    class="secondary-button"
+                >
+                    Security Settings
+                </a>
+
+            </section>
+
+
+
+            <!-- =========================
+                 FOOTER
+            ========================== -->
+
+            <footer class="dashboard-footer">
+
+                <span>
+                    © 2026 RicozPortal. All rights reserved.
+                </span>
+
+
+                <div>
+
+                    <a href="{{ url_for('privacy') }}">
+                        Privacy
+                    </a>
+
+                    <a href="{{ url_for('terms') }}">
+                        Terms
+                    </a>
+
+                    <a href="{{ url_for('support') }}">
+                        Support
+                    </a>
+
+                </div>
+
+            </footer>
+
+
+        </div>
+
+    </main>
+
+</div>
+
+
+</body>
+
+</html>

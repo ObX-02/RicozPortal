@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Settings | RicozPortal</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/settings.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+<div class="dashboard-layout">
+
+
+    <!-- =========================
+         SIDEBAR
+    ========================== -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-top">
+
+            <a
+                href="{{ url_for('dashboard') }}"
+                class="brand"
+            >
+
+                <div class="brand-logo">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <div class="brand-name">
+                    <strong>Ricoz</strong>
+                    <span>Portal</span>
+                </div>
+
+            </a>
+
+
+            <div class="sidebar-label">
+                CUSTOMER PORTAL
+            </div>
+
+
+            <nav class="sidebar-nav">
+
+                <a
+                    href="{{ url_for('dashboard') }}"
+                    class="nav-item"
+                >
+                    <span class="nav-icon">⌂</span>
+                    <span>Dashboard</span>
+                </a>
+
+
+                <a
+                    href="{{ url_for('account') }}"
+                    class="nav-item"
+                >
+                    <span class="nav-icon">◉</span>
+                    <span>My Account</span>
+                </a>
+
+
+                <a
+                    href="{{ url_for('subscription') }}"
+                    class="nav-item"
+                >
+                    <span class="nav-icon">▣</span>
+                    <span>Subscription</span>
+                </a>
+
+
+                <a
+                    href="{{ url_for('billing') }}"
+                    class="nav-item"
+                >
+                    <span class="nav-icon">▤</span>
+                    <span>Billing</span>
+                </a>
+
+
+                <a
+                    href="{{ url_for('support') }}"
+                    class="nav-item"
+                >
+                    <span class="nav-icon">?</span>
+                    <span>Support</span>
+                </a>
+
+
+                <a
+                    href="{{ url_for('settings') }}"
+                    class="nav-item active"
+                >
+                    <span class="nav-icon">⚙</span>
+                    <span>Settings</span>
+                </a>
+
+            </nav>
+
+        </div>
+
+
+        <!-- SIDEBAR BOTTOM -->
+
+        <div class="sidebar-bottom">
+
+            <div class="help-card">
+
+                <div class="help-icon">
+                    ?
+                </div>
+
+                <div>
+
+                    <strong>
+                        Need help?
+                    </strong>
+
+                    <p>
+                        Our support team is here for you.
+                    </p>
+
+                    <a href="{{ url_for('support') }}">
+                        Contact Support →
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <a
+                href="{{ url_for('logout') }}"
+                class="logout-link"
+            >
+
+                <span class="logout-icon">
+                    ↪
+                </span>
+
+                <span>
+                    Sign Out
+                </span>
+
+            </a>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <main class="main-content">
+
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <div class="mobile-brand">
+
+                <a href="{{ url_for('dashboard') }}">
+
+                    <div class="brand-logo">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                    <div class="brand-name">
+                        <strong>Ricoz</strong>
+                        <span>Portal</span>
+                    </div>
+
+                </a>
+
+            </div>
+
+
+            <div class="topbar-right">
+
+                <a
+                    href="{{ url_for('notifications') }}"
+                    class="notification-button"
+                    aria-label="Notifications"
+                >
+                    <span class="notification-icon">
+                        ♢
+                    </span>
+                </a>
+
+
+                <div class="profile">
+
+                    <div class="profile-avatar">
+                        {{ user["name"][0]|upper }}
+                    </div>
+
+
+                    <div class="profile-info">
+
+                        <strong>
+                            {{ user["name"] }}
+                        </strong>
+
+                        <span>
+                            {{ user["email"] }}
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =========================
+             PAGE CONTENT
+        ========================== -->
+
+        <div class="page-content">
+
+
+            <!-- PAGE INTRO -->
+
+            <section class="welcome-section">
+
+                <div>
+
+                    <span class="section-label">
+                        ACCOUNT SETTINGS
+                    </span>
+
+                    <h1>
+                        Security & Settings
+                    </h1>
+
+                    <p>
+                        Manage your account security and update
+                        your password whenever you need to.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =========================
+                 MESSAGES
+            ========================== -->
+
+            {% if success %}
+
+            <div class="message success-message">
+
+                <span class="message-icon">
+                    ✓
+                </span>
+
+                <span>
+                    {{ success }}
+                </span>
+
+            </div>
+
+            {% endif %}
+
+
+            {% if error %}
+
+            <div class="message error-message">
+
+                <span class="message-icon">
+                    !
+                </span>
+
+                <span>
+                    {{ error }}
+                </span>
+
+            </div>
+
+            {% endif %}
+
+
+
+            <!-- =========================
+                 SETTINGS GRID
+            ========================== -->
+
+            <section class="settings-grid">
+
+
+                <!-- PASSWORD CARD -->
+
+                <div class="settings-card password-card">
+
+                    <div class="card-heading">
+
+                        <div class="heading-icon">
+                            ✓
+                        </div>
+
+                        <div>
+
+                            <span class="card-label">
+                                PASSWORD
+                            </span>
+
+                            <h2>
+                                Change Password
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+
+                    <p class="card-description">
+                        Choose a strong password that you do not
+                        use on other websites or services.
+                    </p>
+
+
+                    <form
+                        method="POST"
+                        action="{{ url_for('settings') }}"
+                    >
+
+
+                        <div class="form-group">
+
+                            <label for="current_password">
+                                Current Password
+                            </label>
+
+                            <input
+                                type="password"
+                                id="current_password"
+                                name="current_password"
+                                placeholder="Enter your current password"
+                                autocomplete="current-password"
+                                required
+                            >
+
+                        </div>
+
+
+
+                        <div class="form-group">
+
+                            <label for="new_password">
+                                New Password
+                            </label>
+
+                            <input
+                                type="password"
+                                id="new_password"
+                                name="new_password"
+                                placeholder="Enter your new password"
+                                autocomplete="new-password"
+                                minlength="8"
+                                required
+                            >
+
+                            <span class="field-note">
+                                Password must contain at least 8 characters.
+                            </span>
+
+                        </div>
+
+
+
+                        <div class="form-group">
+
+                            <label for="confirm_password">
+                                Confirm New Password
+                            </label>
+
+                            <input
+                                type="password"
+                                id="confirm_password"
+                                name="confirm_password"
+                                placeholder="Confirm your new password"
+                                autocomplete="new-password"
+                                minlength="8"
+                                required
+                            >
+
+                        </div>
+
+
+
+                        <div class="form-footer">
+
+                            <span class="form-note">
+                                Your password will be securely stored.
+                            </span>
+
+                            <button
+                                type="submit"
+                                class="primary-button"
+                            >
+                                Update Password
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+
+
+                <!-- SECURITY INFORMATION -->
+
+                <aside class="security-column">
+
+
+                    <div class="security-card">
+
+                        <div class="security-icon">
+                            ✓
+                        </div>
+
+                        <span class="card-label">
+                            ACCOUNT SECURITY
+                        </span>
+
+                        <h2>
+                            Keep your account protected
+                        </h2>
+
+                        <p>
+                            Use a unique password and avoid
+                            sharing your login credentials with
+                            other people.
+                        </p>
+
+                    </div>
+
+
+
+                    <div class="security-card white-card">
+
+                        <div class="security-icon">
+                            i
+                        </div>
+
+                        <h3>
+                            Password tips
+                        </h3>
+
+                        <ul>
+
+                            <li>
+                                Use at least 8 characters.
+                            </li>
+
+                            <li>
+                                Avoid easily guessed information.
+                            </li>
+
+                            <li>
+                                Do not reuse your password.
+                            </li>
+
+                            <li>
+                                Never share your password.
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+
+                </aside>
+
+            </section>
+
+
+
+            <!-- =========================
+                 ACCOUNT INFORMATION
+            ========================== -->
+
+            <section class="account-security-card">
+
+                <div class="account-security-header">
+
+                    <div>
+
+                        <span class="section-label">
+                            ACCOUNT
+                        </span>
+
+                        <h2>
+                            Security Information
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="security-details">
+
+                    <div class="security-detail">
+
+                        <span>
+                            Account Email
+                        </span>
+
+                        <strong>
+                            {{ user["email"] }}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="security-detail">
+
+                        <span>
+                            Account Status
+                        </span>
+
+                        <strong class="active-status">
+                            Active
+                        </strong>
+
+                    </div>
+
+
+                    <div class="security-detail">
+
+                        <span>
+                            Current Plan
+                        </span>
+
+                        <strong>
+                            {{ user["plan"] or "Free" }}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =========================
+                 SUPPORT CTA
+            ========================== -->
+
+            <section class="support-cta">
+
+                <div class="support-cta-icon">
+                    ?
+                </div>
+
+
+                <div class="support-cta-content">
+
+                    <span>
+                        NEED HELP?
+                    </span>
+
+                    <h2>
+                        Having trouble with your account?
+                    </h2>
+
+                    <p>
+                        If you have any account or security
+                        questions, contact the Ricoz support team.
+                    </p>
+
+                </div>
+
+
+                <a
+                    href="{{ url_for('support') }}"
+                    class="secondary-button"
+                >
+                    Contact Support
+                </a>
+
+            </section>
+
+
+
+            <!-- =========================
+                 FOOTER
+            ========================== -->
+
+            <footer class="dashboard-footer">
+
+                <span>
+                    © 2026 RicozPortal. All rights reserved.
+                </span>
+
+
+                <div>
+
+                    <a href="{{ url_for('privacy') }}">
+                        Privacy
+                    </a>
+
+                    <a href="{{ url_for('terms') }}">
+                        Terms
+                    </a>
+
+                    <a href="{{ url_for('support') }}">
+                        Support
+                    </a>
+
+                </div>
+
+            </footer>
+
+
+        </div>
+
+    </main>
+
+</div>
+
+
+</body>
+
+</html>

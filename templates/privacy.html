@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Privacy Policy | RicozPortal</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/privacy.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+<div class="dashboard-layout">
+
+
+    <!-- =========================
+         SIDEBAR
+    ========================== -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-top">
+
+            <a
+                href="{{ url_for('dashboard') }}"
+                class="brand"
+            >
+
+                <div class="brand-logo">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <div class="brand-name">
+                    <strong>Ricoz</strong>
+                    <span>Portal</span>
+                </div>
+
+            </a>
+
+
+            <div class="sidebar-label">
+                CUSTOMER PORTAL
+            </div>
+
+
+            <nav class="sidebar-nav">
+
+                <a
+                    href="{{ url_for('dashboard') }}"
+                    class="nav-item"
+                >
+                    <span class="nav-icon">⌂</span>
+                    <span>Dashboard</span>
+                </a>
+
+
+                <a
+                    href="{{ url_for('account') }}"
+                    class="nav-item"
+                >
+                    <span class="nav-icon">◉</span>
+                    <span>My Account</span>
+                </a>
+
+
+                <a
+                    href="{{ url_for('subscription') }}"
+                    class="nav-item"
+                >
+                    <span class="nav-icon">▣</span>
+                    <span>Subscription</span>
+                </a>
+
+
+                <a
+                    href="{{ url_for('billing') }}"
+                    class="nav-item"
+                >
+                    <span class="nav-icon">▤</span>
+                    <span>Billing</span>
+                </a>
+
+
+                <a
+                    href="{{ url_for('support') }}"
+                    class="nav-item"
+                >
+                    <span class="nav-icon">?</span>
+                    <span>Support</span>
+                </a>
+
+
+                <a
+                    href="{{ url_for('settings') }}"
+                    class="nav-item"
+                >
+                    <span class="nav-icon">⚙</span>
+                    <span>Settings</span>
+                </a>
+
+            </nav>
+
+        </div>
+
+
+        <!-- SIDEBAR BOTTOM -->
+
+        <div class="sidebar-bottom">
+
+            <div class="help-card">
+
+                <div class="help-icon">
+                    ?
+                </div>
+
+                <div>
+
+                    <strong>
+                        Need help?
+                    </strong>
+
+                    <p>
+                        Our support team is here for you.
+                    </p>
+
+                    <a href="{{ url_for('support') }}">
+                        Contact Support →
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <a
+                href="{{ url_for('logout') }}"
+                class="logout-link"
+            >
+
+                <span class="logout-icon">
+                    ↪
+                </span>
+
+                <span>
+                    Sign Out
+                </span>
+
+            </a>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <main class="main-content">
+
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <div class="mobile-brand">
+
+                <a href="{{ url_for('dashboard') }}">
+
+                    <div class="brand-logo">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                    <div class="brand-name">
+                        <strong>Ricoz</strong>
+                        <span>Portal</span>
+                    </div>
+
+                </a>
+
+            </div>
+
+
+            <div class="topbar-right">
+
+                <a
+                    href="{{ url_for('notifications') }}"
+                    class="notification-button"
+                    aria-label="Notifications"
+                >
+                    <span class="notification-icon">
+                        ♢
+                    </span>
+                </a>
+
+
+                <div class="profile">
+
+                    <div class="profile-avatar">
+                        {{ user["name"][0]|upper }}
+                    </div>
+
+
+                    <div class="profile-info">
+
+                        <strong>
+                            {{ user["name"] }}
+                        </strong>
+
+                        <span>
+                            {{ user["email"] }}
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =========================
+             PAGE CONTENT
+        ========================== -->
+
+        <div class="page-content">
+
+
+            <!-- PAGE HEADER -->
+
+            <section class="page-header">
+
+                <span class="section-label">
+                    LEGAL & PRIVACY
+                </span>
+
+                <h1>
+                    Privacy Policy
+                </h1>
+
+                <p>
+                    This page explains how information provided
+                    through RicozPortal is handled and protected.
+                </p>
+
+                <div class="last-updated">
+                    Last updated: October 1, 2026
+                </div>
+
+            </section>
+
+
+
+            <!-- =========================
+                 PRIVACY CONTENT
+            ========================== -->
+
+            <section class="policy-layout">
+
+
+                <!-- CONTENT -->
+
+                <article class="policy-card">
+
+
+                    <div class="policy-section">
+
+                        <span class="policy-number">
+                            01
+                        </span>
+
+                        <div>
+
+                            <h2>
+                                Information We Collect
+                            </h2>
+
+                            <p>
+                                When you use RicozPortal, information
+                                such as your name, email address,
+                                company information, account details,
+                                and information submitted through
+                                support requests may be stored to
+                                provide portal services.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="policy-section">
+
+                        <span class="policy-number">
+                            02
+                        </span>
+
+                        <div>
+
+                            <h2>
+                                How We Use Information
+                            </h2>
+
+                            <p>
+                                Information associated with your
+                                account may be used to provide and
+                                maintain portal functionality,
+                                manage your account, process service
+                                requests, respond to support tickets,
+                                and communicate important account
+                                updates.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="policy-section">
+
+                        <span class="policy-number">
+                            03
+                        </span>
+
+                        <div>
+
+                            <h2>
+                                Account Security
+                            </h2>
+
+                            <p>
+                                Account passwords are stored using
+                                password hashing rather than being
+                                stored as plain text. You should also
+                                keep your login credentials private
+                                and avoid sharing your password with
+                                other people.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="policy-section">
+
+                        <span class="policy-number">
+                            04
+                        </span>
+
+                        <div>
+
+                            <h2>
+                                Support Information
+                            </h2>
+
+                            <p>
+                                Information that you submit through
+                                the support form may be retained so
+                                that support requests can be tracked,
+                                reviewed, and responded to.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="policy-section">
+
+                        <span class="policy-number">
+                            05
+                        </span>
+
+                        <div>
+
+                            <h2>
+                                Data Protection
+                            </h2>
+
+                            <p>
+                                Reasonable technical and
+                                organizational measures are used to
+                                help protect account information.
+                                However, no online service can
+                                guarantee absolute security.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="policy-section">
+
+                        <span class="policy-number">
+                            06
+                        </span>
+
+                        <div>
+
+                            <h2>
+                                Third-Party Services
+                            </h2>
+
+                            <p>
+                                RicozPortal may rely on infrastructure
+                                and service providers required to
+                                operate the application. Information
+                                handled by such providers is subject
+                                to the applicable terms and privacy
+                                practices of those services.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="policy-section">
+
+                        <span class="policy-number">
+                            07
+                        </span>
+
+                        <div>
+
+                            <h2>
+                                Your Responsibilities
+                            </h2>
+
+                            <p>
+                                You are responsible for maintaining
+                                the confidentiality of your account
+                                credentials and for ensuring that
+                                information submitted through your
+                                account is accurate and appropriate.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="policy-section">
+
+                        <span class="policy-number">
+                            08
+                        </span>
+
+                        <div>
+
+                            <h2>
+                                Policy Updates
+                            </h2>
+
+                            <p>
+                                This privacy information may be
+                                updated from time to time as the
+                                portal and its services evolve.
+                                Updated information will be reflected
+                                on this page.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="policy-contact">
+
+                        <div class="contact-icon">
+                            ?
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Questions about privacy?
+                            </h3>
+
+                            <p>
+                                If you have questions about your
+                                account information or privacy,
+                                contact the Ricoz support team.
+                            </p>
+
+                            <a href="{{ url_for('support') }}">
+                                Contact Support →
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+                </article>
+
+
+
+                <!-- SIDE INFORMATION -->
+
+                <aside class="policy-sidebar">
+
+
+                    <div class="side-card">
+
+                        <div class="side-icon">
+                            ✓
+                        </div>
+
+                        <span class="side-label">
+                            YOUR ACCOUNT
+                        </span>
+
+                        <h3>
+                            Stay in control
+                        </h3>
+
+                        <p>
+                            Review and update your personal account
+                            information from the My Account section.
+                        </p>
+
+                        <a href="{{ url_for('account') }}">
+                            Manage Account →
+                        </a>
+
+                    </div>
+
+
+
+                    <div class="side-card white-card">
+
+                        <div class="side-icon">
+                            ⚙
+                        </div>
+
+                        <span class="side-label">
+                            SECURITY
+                        </span>
+
+                        <h3>
+                            Manage your password
+                        </h3>
+
+                        <p>
+                            You can update your account password
+                            whenever necessary from Settings.
+                        </p>
+
+                        <a href="{{ url_for('settings') }}">
+                            Security Settings →
+                        </a>
+
+                    </div>
+
+
+                </aside>
+
+            </section>
+
+
+
+            <!-- =========================
+                 FOOTER
+            ========================== -->
+
+            <footer class="dashboard-footer">
+
+                <span>
+                    © 2026 RicozPortal. All rights reserved.
+                </span>
+
+
+                <div>
+
+                    <a href="{{ url_for('privacy') }}">
+                        Privacy
+                    </a>
+
+                    <a href="{{ url_for('terms') }}">
+                        Terms
+                    </a>
+
+                    <a href="{{ url_for('support') }}">
+                        Support
+                    </a>
+
+                </div>
+
+            </footer>
+
+
+        </div>
+
+    </main>
+
+</div>
+
+
+</body>
+
+</html>

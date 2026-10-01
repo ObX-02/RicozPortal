@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Billing | RicozPortal</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/billing.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+<div class="dashboard-layout">
+
+
+    <!-- =========================
+         SIDEBAR
+    ========================== -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-top">
+
+            <a
+                href="{{ url_for('dashboard') }}"
+                class="brand"
+            >
+
+                <div class="brand-logo">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <div class="brand-name">
+                    <strong>Ricoz</strong>
+                    <span>Portal</span>
+                </div>
+
+            </a>
+
+
+            <div class="sidebar-label">
+                CUSTOMER PORTAL
+            </div>
+
+
+            <nav class="sidebar-nav">
+
+                <a
+                    href="{{ url_for('dashboard') }}"
+                    class="nav-item"
+                >
+                    <span class="nav-icon">⌂</span>
+                    <span>Dashboard</span>
+                </a>
+
+
+                <a
+                    href="{{ url_for('account') }}"
+                    class="nav-item"
+                >
+                    <span class="nav-icon">◉</span>
+                    <span>My Account</span>
+                </a>
+
+
+                <a
+                    href="{{ url_for('subscription') }}"
+                    class="nav-item"
+                >
+                    <span class="nav-icon">▣</span>
+                    <span>Subscription</span>
+                </a>
+
+
+                <a
+                    href="{{ url_for('billing') }}"
+                    class="nav-item active"
+                >
+                    <span class="nav-icon">▤</span>
+                    <span>Billing</span>
+                </a>
+
+
+                <a
+                    href="{{ url_for('support') }}"
+                    class="nav-item"
+                >
+                    <span class="nav-icon">?</span>
+                    <span>Support</span>
+                </a>
+
+
+                <a
+                    href="{{ url_for('settings') }}"
+                    class="nav-item"
+                >
+                    <span class="nav-icon">⚙</span>
+                    <span>Settings</span>
+                </a>
+
+            </nav>
+
+        </div>
+
+
+
+        <!-- SIDEBAR BOTTOM -->
+
+        <div class="sidebar-bottom">
+
+            <div class="help-card">
+
+                <div class="help-icon">
+                    ?
+                </div>
+
+                <div>
+
+                    <strong>
+                        Need help?
+                    </strong>
+
+                    <p>
+                        Our support team is here for you.
+                    </p>
+
+                    <a href="{{ url_for('support') }}">
+                        Contact Support →
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <a
+                href="{{ url_for('logout') }}"
+                class="logout-link"
+            >
+
+                <span class="logout-icon">
+                    ↪
+                </span>
+
+                <span>
+                    Sign Out
+                </span>
+
+            </a>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <main class="main-content">
+
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <div class="mobile-brand">
+
+                <a href="{{ url_for('dashboard') }}">
+
+                    <div class="brand-logo">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                    <div class="brand-name">
+                        <strong>Ricoz</strong>
+                        <span>Portal</span>
+                    </div>
+
+                </a>
+
+            </div>
+
+
+            <div class="topbar-right">
+
+                <a
+                    href="{{ url_for('notifications') }}"
+                    class="notification-button"
+                    aria-label="Notifications"
+                >
+
+                    <span class="notification-icon">
+                        ♢
+                    </span>
+
+                </a>
+
+
+                <div class="profile">
+
+                    <div class="profile-avatar">
+                        {{ user["name"][0]|upper }}
+                    </div>
+
+
+                    <div class="profile-info">
+
+                        <strong>
+                            {{ user["name"] }}
+                        </strong>
+
+                        <span>
+                            {{ user["email"] }}
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =========================
+             PAGE CONTENT
+        ========================== -->
+
+        <div class="page-content">
+
+
+            <!-- PAGE INTRO -->
+
+            <section class="welcome-section">
+
+                <div>
+
+                    <span class="section-label">
+                        BILLING
+                    </span>
+
+                    <h1>
+                        Billing & Invoices
+                    </h1>
+
+                    <p>
+                        View your billing information and
+                        access your invoice history.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =========================
+                 BILLING SUMMARY
+            ========================== -->
+
+            <section class="billing-summary">
+
+
+                <div class="summary-card">
+
+                    <div class="summary-icon">
+                        $
+                    </div>
+
+                    <div>
+
+                        <span>
+                            CURRENT PLAN
+                        </span>
+
+                        <strong>
+                            {{ user["plan"] or "Free" }}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="summary-card">
+
+                    <div class="summary-icon">
+                        ▤
+                    </div>
+
+                    <div>
+
+                        <span>
+                            BILLING CYCLE
+                        </span>
+
+                        <strong>
+                            Monthly
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="summary-card">
+
+                    <div class="summary-icon">
+                        ✓
+                    </div>
+
+                    <div>
+
+                        <span>
+                            PAYMENT STATUS
+                        </span>
+
+                        <strong class="status-text">
+                            Up to date
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =========================
+                 INVOICE CARD
+            ========================== -->
+
+            <section class="dashboard-card invoice-card">
+
+
+                <div class="card-header">
+
+                    <div>
+
+                        <span class="card-label">
+                            BILLING HISTORY
+                        </span>
+
+                        <h2>
+                            Invoices
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+
+                {% if invoices %}
+
+
+                <!-- DESKTOP TABLE -->
+
+                <div class="invoice-table-wrapper">
+
+                    <table class="invoice-table">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Invoice
+                                </th>
+
+                                <th>
+                                    Date
+                                </th>
+
+                                <th>
+                                    Amount
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody>
+
+                            {% for invoice in invoices %}
+
+                            <tr>
+
+                                <td>
+
+                                    <div class="invoice-number">
+
+                                        <span class="invoice-icon">
+                                            ▤
+                                        </span>
+
+                                        <strong>
+                                            {{ invoice["invoice_number"] }}
+                                        </strong>
+
+                                    </div>
+
+                                </td>
+
+
+                                <td>
+
+                                    {% if invoice["invoice_date"] %}
+
+                                        {{ invoice["invoice_date"].strftime("%b %d, %Y") }}
+
+                                    {% else %}
+
+                                        —
+
+                                    {% endif %}
+
+                                </td>
+
+
+                                <td>
+
+                                    ${{ "%.2f"|format(invoice["amount"]) }}
+
+                                </td>
+
+
+                                <td>
+
+                                    {% if invoice["status"]|lower == "paid" %}
+
+                                        <span class="invoice-status paid">
+                                            Paid
+                                        </span>
+
+                                    {% elif invoice["status"]|lower == "pending" %}
+
+                                        <span class="invoice-status pending">
+                                            Pending
+                                        </span>
+
+                                    {% else %}
+
+                                        <span class="invoice-status">
+                                            {{ invoice["status"] }}
+                                        </span>
+
+                                    {% endif %}
+
+                                </td>
+
+                            </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <!-- MOBILE INVOICES -->
+
+                <div class="mobile-invoices">
+
+                    {% for invoice in invoices %}
+
+                    <div class="mobile-invoice">
+
+                        <div class="mobile-invoice-top">
+
+                            <div class="invoice-number">
+
+                                <span class="invoice-icon">
+                                    ▤
+                                </span>
+
+                                <strong>
+                                    {{ invoice["invoice_number"] }}
+                                </strong>
+
+                            </div>
+
+
+                            {% if invoice["status"]|lower == "paid" %}
+
+                                <span class="invoice-status paid">
+                                    Paid
+                                </span>
+
+                            {% elif invoice["status"]|lower == "pending" %}
+
+                                <span class="invoice-status pending">
+                                    Pending
+                                </span>
+
+                            {% else %}
+
+                                <span class="invoice-status">
+                                    {{ invoice["status"] }}
+                                </span>
+
+                            {% endif %}
+
+                        </div>
+
+
+                        <div class="mobile-invoice-details">
+
+                            <div>
+
+                                <span>
+                                    Date
+                                </span>
+
+                                <strong>
+
+                                    {% if invoice["invoice_date"] %}
+
+                                        {{ invoice["invoice_date"].strftime("%b %d, %Y") }}
+
+                                    {% else %}
+
+                                        —
+
+                                    {% endif %}
+
+                                </strong>
+
+                            </div>
+
+
+                            <div>
+
+                                <span>
+                                    Amount
+                                </span>
+
+                                <strong>
+                                    ${{ "%.2f"|format(invoice["amount"]) }}
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+
+
+                {% else %}
+
+
+                <!-- EMPTY STATE -->
+
+                <div class="empty-state">
+
+                    <div class="empty-icon">
+                        ▤
+                    </div>
+
+                    <h3>
+                        No invoices yet
+                    </h3>
+
+                    <p>
+                        Your invoices will appear here once
+                        billing activity is available.
+                    </p>
+
+                    <a
+                        href="{{ url_for('support') }}"
+                        class="secondary-button"
+                    >
+                        Contact Support
+                    </a>
+
+                </div>
+
+
+                {% endif %}
+
+            </section>
+
+
+
+            <!-- =========================
+                 BILLING INFORMATION
+            ========================== -->
+
+            <section class="billing-info-grid">
+
+
+                <div class="dashboard-card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <span class="card-label">
+                                PAYMENT INFORMATION
+                            </span>
+
+                            <h2>
+                                Billing Details
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="info-list">
+
+                        <div class="info-row">
+
+                            <span>
+                                Account Email
+                            </span>
+
+                            <strong>
+                                {{ user["email"] }}
+                            </strong>
+
+                        </div>
+
+
+                        <div class="info-row">
+
+                            <span>
+                                Current Plan
+                            </span>
+
+                            <strong>
+                                {{ user["plan"] or "Free" }}
+                            </strong>
+
+                        </div>
+
+
+                        <div class="info-row">
+
+                            <span>
+                                Billing Cycle
+                            </span>
+
+                            <strong>
+                                Monthly
+                            </strong>
+
+                        </div>
+
+
+                        <div class="info-row">
+
+                            <span>
+                                Payment Status
+                            </span>
+
+                            <strong class="success-text">
+                                Up to date
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- HELP CARD -->
+
+                <div class="billing-help">
+
+                    <div class="billing-help-icon">
+                        ?
+                    </div>
+
+                    <span class="section-label">
+                        BILLING SUPPORT
+                    </span>
+
+                    <h2>
+                        Need help with billing?
+                    </h2>
+
+                    <p>
+                        If you have a question about an invoice,
+                        payment or subscription charge, contact
+                        our support team.
+                    </p>
+
+
+                    <a
+                        href="{{ url_for('support') }}"
+                        class="primary-button"
+                    >
+                        Contact Support
+                    </a>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =========================
+                 FOOTER
+            ========================== -->
+
+            <footer class="dashboard-footer">
+
+                <span>
+                    © 2026 RicozPortal. All rights reserved.
+                </span>
+
+
+                <div>
+
+                    <a href="{{ url_for('privacy') }}">
+                        Privacy
+                    </a>
+
+                    <a href="{{ url_for('terms') }}">
+                        Terms
+                    </a>
+
+                    <a href="{{ url_for('support') }}">
+                        Support
+                    </a>
+
+                </div>
+
+            </footer>
+
+
+        </div>
+
+    </main>
+
+</div>
+
+
+</body>
+
+</html>

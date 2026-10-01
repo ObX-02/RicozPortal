@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Subscription | RicozPortal</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/subscription.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+<div class="dashboard-layout">
+
+
+    <!-- =========================
+         SIDEBAR
+    ========================== -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-top">
+
+            <a
+                href="{{ url_for('dashboard') }}"
+                class="brand"
+            >
+
+                <div class="brand-logo">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <div class="brand-name">
+                    <strong>Ricoz</strong>
+                    <span>Portal</span>
+                </div>
+
+            </a>
+
+
+            <div class="sidebar-label">
+                CUSTOMER PORTAL
+            </div>
+
+
+            <nav class="sidebar-nav">
+
+                <a
+                    href="{{ url_for('dashboard') }}"
+                    class="nav-item"
+                >
+                    <span class="nav-icon">⌂</span>
+                    <span>Dashboard</span>
+                </a>
+
+
+                <a
+                    href="{{ url_for('account') }}"
+                    class="nav-item"
+                >
+                    <span class="nav-icon">◉</span>
+                    <span>My Account</span>
+                </a>
+
+
+                <a
+                    href="{{ url_for('subscription') }}"
+                    class="nav-item active"
+                >
+                    <span class="nav-icon">▣</span>
+                    <span>Subscription</span>
+                </a>
+
+
+                <a
+                    href="{{ url_for('billing') }}"
+                    class="nav-item"
+                >
+                    <span class="nav-icon">▤</span>
+                    <span>Billing</span>
+                </a>
+
+
+                <a
+                    href="{{ url_for('support') }}"
+                    class="nav-item"
+                >
+                    <span class="nav-icon">?</span>
+                    <span>Support</span>
+                </a>
+
+
+                <a
+                    href="{{ url_for('settings') }}"
+                    class="nav-item"
+                >
+                    <span class="nav-icon">⚙</span>
+                    <span>Settings</span>
+                </a>
+
+            </nav>
+
+        </div>
+
+
+
+        <!-- SIDEBAR BOTTOM -->
+
+        <div class="sidebar-bottom">
+
+            <div class="help-card">
+
+                <div class="help-icon">
+                    ?
+                </div>
+
+                <div>
+
+                    <strong>
+                        Need help?
+                    </strong>
+
+                    <p>
+                        Our support team is here for you.
+                    </p>
+
+                    <a href="{{ url_for('support') }}">
+                        Contact Support →
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <a
+                href="{{ url_for('logout') }}"
+                class="logout-link"
+            >
+
+                <span class="logout-icon">
+                    ↪
+                </span>
+
+                <span>
+                    Sign Out
+                </span>
+
+            </a>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <main class="main-content">
+
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <div class="mobile-brand">
+
+                <a href="{{ url_for('dashboard') }}">
+
+                    <div class="brand-logo">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                    <div class="brand-name">
+                        <strong>Ricoz</strong>
+                        <span>Portal</span>
+                    </div>
+
+                </a>
+
+            </div>
+
+
+            <div class="topbar-right">
+
+                <a
+                    href="{{ url_for('notifications') }}"
+                    class="notification-button"
+                    aria-label="Notifications"
+                >
+
+                    <span class="notification-icon">
+                        ♢
+                    </span>
+
+                </a>
+
+
+                <div class="profile">
+
+                    <div class="profile-avatar">
+                        {{ user["name"][0]|upper }}
+                    </div>
+
+
+                    <div class="profile-info">
+
+                        <strong>
+                            {{ user["name"] }}
+                        </strong>
+
+                        <span>
+                            {{ user["email"] }}
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =========================
+             PAGE CONTENT
+        ========================== -->
+
+        <div class="page-content">
+
+
+            <!-- PAGE INTRO -->
+
+            <section class="welcome-section">
+
+                <div>
+
+                    <span class="section-label">
+                        SUBSCRIPTION
+                    </span>
+
+                    <h1>
+                        Your Subscription
+                    </h1>
+
+                    <p>
+                        View your current plan, billing cycle
+                        and subscription benefits.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =========================
+                 CURRENT PLAN
+            ========================== -->
+
+            <section class="subscription-layout">
+
+
+                <div class="plan-card">
+
+                    <div class="plan-card-top">
+
+                        <div>
+
+                            <span class="card-label">
+                                CURRENT PLAN
+                            </span>
+
+                            <h2>
+                                {{ user["plan"] or "Free" }}
+                            </h2>
+
+                        </div>
+
+
+                        <span class="active-badge">
+                            Active
+                        </span>
+
+                    </div>
+
+
+                    <div class="price-row">
+
+                        <strong>
+                            {% if user["plan"] == "Free" %}
+                                $0
+                            {% else %}
+                                $49
+                            {% endif %}
+                        </strong>
+
+                        <span>
+                            / month
+                        </span>
+
+                    </div>
+
+
+                    <p class="plan-description">
+
+                        Your current RicozPortal subscription
+                        provides access to the customer portal,
+                        account management and customer support.
+
+                    </p>
+
+
+                    <div class="plan-features">
+
+                        <div>
+                            <span>✓</span>
+                            Customer portal access
+                        </div>
+
+                        <div>
+                            <span>✓</span>
+                            Account management
+                        </div>
+
+                        <div>
+                            <span>✓</span>
+                            Customer support
+                        </div>
+
+                        <div>
+                            <span>✓</span>
+                            Secure account access
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =========================
+                     SUBSCRIPTION DETAILS
+                ========================== -->
+
+                <div class="details-card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <span class="card-label">
+                                SUBSCRIPTION DETAILS
+                            </span>
+
+                            <h2>
+                                Plan Information
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="details-list">
+
+
+                        <div class="detail-row">
+
+                            <div>
+
+                                <span class="detail-label">
+                                    Current Plan
+                                </span>
+
+                                <strong>
+                                    {{ user["plan"] or "Free" }}
+                                </strong>
+
+                            </div>
+
+                            <span class="detail-status">
+                                Active
+                            </span>
+
+                        </div>
+
+
+
+                        <div class="detail-row">
+
+                            <div>
+
+                                <span class="detail-label">
+                                    Billing Cycle
+                                </span>
+
+                                <strong>
+                                    Monthly
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="detail-row">
+
+                            <div>
+
+                                <span class="detail-label">
+                                    Next Billing Date
+                                </span>
+
+                                <strong>
+                                    October 30, 2026
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="detail-row">
+
+                            <div>
+
+                                <span class="detail-label">
+                                    Payment Status
+                                </span>
+
+                                <strong>
+                                    Up to date
+                                </strong>
+
+                            </div>
+
+                            <span class="paid-badge">
+                                Current
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =========================
+                 PLAN BENEFITS
+            ========================== -->
+
+            <section class="dashboard-card benefits-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <span class="card-label">
+                            INCLUDED BENEFITS
+                        </span>
+
+                        <h2>
+                            What Your Plan Includes
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="benefits-grid">
+
+
+                    <div class="benefit-item">
+
+                        <div class="benefit-icon">
+                            ◉
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Customer Portal
+                            </strong>
+
+                            <span>
+                                Manage your Ricoz account
+                                from one secure location.
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="benefit-item">
+
+                        <div class="benefit-icon">
+                            ✓
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Account Management
+                            </strong>
+
+                            <span>
+                                Keep your profile and company
+                                information updated.
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="benefit-item">
+
+                        <div class="benefit-icon">
+                            ?
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Customer Support
+                            </strong>
+
+                            <span>
+                                Submit support requests and
+                                track your tickets.
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="benefit-item">
+
+                        <div class="benefit-icon">
+                            ◇
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Secure Access
+                            </strong>
+
+                            <span>
+                                Protected account access with
+                                secure authentication.
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =========================
+                 SUPPORT CTA
+            ========================== -->
+
+            <section class="subscription-help">
+
+                <div>
+
+                    <span class="section-label">
+                        NEED ASSISTANCE?
+                    </span>
+
+                    <h2>
+                        Have questions about your subscription?
+                    </h2>
+
+                    <p>
+                        Our support team can help you with
+                        subscription and account questions.
+                    </p>
+
+                </div>
+
+
+                <a
+                    href="{{ url_for('support') }}"
+                    class="primary-button"
+                >
+                    Contact Support
+                </a>
+
+            </section>
+
+
+
+            <!-- =========================
+                 FOOTER
+            ========================== -->
+
+            <footer class="dashboard-footer">
+
+                <span>
+                    © 2026 RicozPortal. All rights reserved.
+                </span>
+
+
+                <div>
+
+                    <a href="{{ url_for('privacy') }}">
+                        Privacy
+                    </a>
+
+                    <a href="{{ url_for('terms') }}">
+                        Terms
+                    </a>
+
+                    <a href="{{ url_for('support') }}">
+                        Support
+                    </a>
+
+                </div>
+
+            </footer>
+
+
+        </div>
+
+    </main>
+
+</div>
+
+
+</body>
+
+</html>
