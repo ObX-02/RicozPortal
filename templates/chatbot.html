@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Ricoz Assistant</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/chatbot.css') }}"
+    >
+</head>
+
+<body>
+
+    <div class="chatbot-page">
+
+        <div class="chatbot-card">
+
+            <!-- Header -->
+            <header class="chat-header">
+
+                <div class="assistant-info">
+
+                    <div class="assistant-logo">
+                        R
+                    </div>
+
+                    <div>
+                        <h1>Ricoz Assistant</h1>
+                        <span>
+                            <span class="status-dot"></span>
+                            Online
+                        </span>
+                    </div>
+
+                </div>
+
+                <a href="{{ url_for('dashboard') }}" class="close-btn">
+                    ×
+                </a>
+
+            </header>
+
+
+            <!-- Messages -->
+            <main class="chat-messages" id="chatMessages">
+
+                <div class="message assistant-message">
+                    <div class="message-avatar">R</div>
+
+                    <div class="message-content">
+                        <span class="message-name">
+                            Ricoz Assistant
+                        </span>
+
+                        <p>
+                            Hello! 👋 Welcome to Ricoz.
+                            How can I help you today?
+                        </p>
+                    </div>
+                </div>
+
+            </main>
+
+
+            <!-- Quick Questions -->
+            <div class="quick-questions">
+
+                <button onclick="sendQuickMessage('How can I manage my account?')">
+                    Account
+                </button>
+
+                <button onclick="sendQuickMessage('Tell me about my subscription.')">
+                    Subscription
+                </button>
+
+                <button onclick="sendQuickMessage('Where can I check my billing?')">
+                    Billing
+                </button>
+
+                <button onclick="sendQuickMessage('I need support.')">
+                    Support
+                </button>
+
+            </div>
+
+
+            <!-- Input -->
+            <form class="chat-input-area" id="chatForm">
+
+                <input
+                    type="text"
+                    id="chatInput"
+                    placeholder="Type your message..."
+                    autocomplete="off"
+                >
+
+                <button type="submit">
+                    Send
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <script
+        src="{{ url_for('static', filename='js/chatbot.js') }}"
+    ></script>
+
+</body>
+</html>
