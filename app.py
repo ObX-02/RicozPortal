@@ -1,55 +1,58 @@
 from flask import Flask, render_template, request, redirect, url_for, session
-import sqlite3
+import os
+import psycopg
+from psycopg.rows import dict_row
 from werkzeug.security import generate_password_hash, check_password_hash
-
 
 app = Flask(__name__)
 
-app.secret_key = "ricozportal-development-secret"
+app.secret_key = os.environ.get(
+    "SECRET_KEY",
+    "ricozportal-development-secret"
+)
 
-
-# ==========================================
-# DATABASE
-# ==========================================
-
-# /tmp is writable on Vercel serverless runtime.
-DATABASE = "/tmp/ricozportal.db"
+DATABASE_URL = os.environ.get("DATABASE_URL")
 
 
 def get_db():
-    connection = sqlite3.connect(DATABASE)
-    connection.row_factory = sqlite3.Row
-    return connection
+    if not DATABASE_URL:
+        raise RuntimeError(
+            "DATABASE_URL environment variable is not configured."
+        )
+
+    return psycopg.connect(
+        DATABASE_URL,
+        row_factory=dict_row
+    )
 
 
 def initialize_database():
-
     connection = get_db()
 
     connection.execute("""
         CREATE TABLE IF NOT EXISTS users (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            id SERIAL PRIMARY KEY,
             name TEXT NOT NULL,
             email TEXT UNIQUE NOT NULL,
             password TEXT NOT NULL,
             company TEXT,
-            plan TEXT
+            plan TEXT DEFAULT 'Free',
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )
     """)
 
     existing_user = connection.execute(
-        "SELECT id FROM users WHERE email = ?",
+        "SELECT id FROM users WHERE email = %s",
         ("demo@ricozportal.com",)
     ).fetchone()
 
     if existing_user is None:
-
         password_hash = generate_password_hash("Demo@123")
 
         connection.execute("""
             INSERT INTO users
             (name, email, password, company, plan)
-            VALUES (?, ?, ?, ?, ?)
+            VALUES (%s, %s, %s, %s, %s)
         """, (
             "Demo Customer",
             "demo@ricozportal.com",
@@ -62,39 +65,25 @@ def initialize_database():
     connection.close()
 
 
-# ==========================================
-# LANDING PAGE
-# ==========================================
-
 @app.route("/")
 def landing():
-
     return render_template("landing.html")
 
 
-# ==========================================
-# LOGIN
-# ==========================================
-
 @app.route("/login", methods=["GET", "POST"])
 def login():
-
     if request.method == "POST":
-
-        email = request.form.get(
-            "email",
-            ""
-        ).strip().lower()
-
-        password = request.form.get(
-            "password",
-            ""
-        )
+        email = request.form.get("email", "").strip().lower()
+        password = request.form.get("password", "")
 
         connection = get_db()
 
         user = connection.execute(
-            "SELECT * FROM users WHERE email = ?",
+            """
+            SELECT *
+            FROM users
+            WHERE email = %s
+            """,
             (email,)
         ).fetchone()
 
@@ -104,22 +93,16 @@ def login():
             user["password"],
             password
         ):
-
             session["user_id"] = user["id"]
 
-            return redirect(
-                url_for("dashboard")
-            )
+            return redirect(url_for("dashboard"))
 
         return render_template(
             "index.html",
             error="Invalid email or password."
         )
 
-    success = session.pop(
-        "success",
-        None
-    )
+    success = session.pop("success", None)
 
     return render_template(
         "index.html",
@@ -127,42 +110,19 @@ def login():
     )
 
 
-# ==========================================
-# REGISTER / CREATE ACCOUNT
-# ==========================================
-
 @app.route("/register", methods=["GET", "POST"])
 def register():
-
     if request.method == "POST":
-
-        name = request.form.get(
-            "name",
-            ""
-        ).strip()
-
-        email = request.form.get(
-            "email",
-            ""
-        ).strip().lower()
-
-        company = request.form.get(
-            "company",
-            ""
-        ).strip()
-
-        password = request.form.get(
-            "password",
-            ""
-        )
-
+        name = request.form.get("name", "").strip()
+        email = request.form.get("email", "").strip().lower()
+        company = request.form.get("company", "").strip()
+        password = request.form.get("password", "")
         confirm_password = request.form.get(
             "confirm_password",
             ""
         )
 
         if not name or not email or not password:
-
             return render_template(
                 "register.html",
                 error="Please fill in all required fields.",
@@ -172,7 +132,6 @@ def register():
             )
 
         if password != confirm_password:
-
             return render_template(
                 "register.html",
                 error="Passwords do not match.",
@@ -182,7 +141,6 @@ def register():
             )
 
         if len(password) < 8:
-
             return render_template(
                 "register.html",
                 error="Password must be at least 8 characters long.",
@@ -194,12 +152,15 @@ def register():
         connection = get_db()
 
         existing_user = connection.execute(
-            "SELECT id FROM users WHERE email = ?",
+            """
+            SELECT id
+            FROM users
+            WHERE email = %s
+            """,
             (email,)
         ).fetchone()
 
         if existing_user:
-
             connection.close()
 
             return render_template(
@@ -210,21 +171,22 @@ def register():
                 company=company
             )
 
-        password_hash = generate_password_hash(
-            password
-        )
+        password_hash = generate_password_hash(password)
 
-        connection.execute("""
+        connection.execute(
+            """
             INSERT INTO users
             (name, email, password, company, plan)
-            VALUES (?, ?, ?, ?, ?)
-        """, (
-            name,
-            email,
-            password_hash,
-            company,
-            "Free"
-        ))
+            VALUES (%s, %s, %s, %s, %s)
+            """,
+            (
+                name,
+                email,
+                password_hash,
+                company,
+                "Free"
+            )
+        )
 
         connection.commit()
         connection.close()
@@ -234,24 +196,14 @@ def register():
             "You can now sign in."
         )
 
-        return redirect(
-            url_for("login")
-        )
+        return redirect(url_for("login"))
 
-    return render_template(
-        "register.html"
-    )
+    return render_template("register.html")
 
-
-# ==========================================
-# FORGOT PASSWORD
-# ==========================================
 
 @app.route("/forgot-password", methods=["GET", "POST"])
 def forgot_password():
-
     if request.method == "POST":
-
         email = request.form.get(
             "email",
             ""
@@ -260,14 +212,17 @@ def forgot_password():
         connection = get_db()
 
         user = connection.execute(
-            "SELECT * FROM users WHERE email = ?",
+            """
+            SELECT *
+            FROM users
+            WHERE email = %s
+            """,
             (email,)
         ).fetchone()
 
         connection.close()
 
         if user is None:
-
             return render_template(
                 "forgot_password.html",
                 error="No account was found with this email."
@@ -284,21 +239,14 @@ def forgot_password():
     )
 
 
-# ==========================================
-# RESET PASSWORD
-# ==========================================
-
 @app.route("/reset-password", methods=["GET", "POST"])
 def reset_password():
-
     if "reset_user_id" not in session:
-
         return redirect(
             url_for("forgot_password")
         )
 
     if request.method == "POST":
-
         password = request.form.get(
             "password",
             ""
@@ -310,14 +258,12 @@ def reset_password():
         )
 
         if len(password) < 8:
-
             return render_template(
                 "reset_password.html",
                 error="Password must be at least 8 characters long."
             )
 
         if password != confirm_password:
-
             return render_template(
                 "reset_password.html",
                 error="Passwords do not match."
@@ -332,8 +278,8 @@ def reset_password():
         connection.execute(
             """
             UPDATE users
-            SET password = ?
-            WHERE id = ?
+            SET password = %s
+            WHERE id = %s
             """,
             (
                 password_hash,
@@ -344,10 +290,7 @@ def reset_password():
         connection.commit()
         connection.close()
 
-        session.pop(
-            "reset_user_id",
-            None
-        )
+        session.pop("reset_user_id", None)
 
         session["success"] = (
             "Password reset successfully. "
@@ -363,15 +306,9 @@ def reset_password():
     )
 
 
-# ==========================================
-# DASHBOARD
-# ==========================================
-
 @app.route("/dashboard")
 def dashboard():
-
     if "user_id" not in session:
-
         return redirect(
             url_for("login")
         )
@@ -379,11 +316,22 @@ def dashboard():
     connection = get_db()
 
     user = connection.execute(
-        "SELECT * FROM users WHERE id = ?",
+        """
+        SELECT *
+        FROM users
+        WHERE id = %s
+        """,
         (session["user_id"],)
     ).fetchone()
 
     connection.close()
+
+    if user is None:
+        session.clear()
+
+        return redirect(
+            url_for("login")
+        )
 
     return render_template(
         "dashboard.html",
@@ -391,13 +339,8 @@ def dashboard():
     )
 
 
-# ==========================================
-# LOGOUT
-# ==========================================
-
 @app.route("/logout")
 def logout():
-
     session.clear()
 
     return redirect(
@@ -405,17 +348,10 @@ def logout():
     )
 
 
-# ==========================================
-# INITIALIZE DATABASE
-# ==========================================
-
+# Initialize the PostgreSQL database
+# when the application starts.
 initialize_database()
 
 
-# ==========================================
-# LOCAL DEVELOPMENT
-# ==========================================
-
 if __name__ == "__main__":
-
     app.run(debug=True)
